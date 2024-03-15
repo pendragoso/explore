@@ -1,0 +1,39 @@
+Title: User Information Schema
+Query details:
+- user(email: String): User
+  - email: String - Email address of the user to fetch.
+  - User
+    - id: String! - Unique identifier for the user.
+    - createdAt: DateTime! - Date and time when the user was created.
+    - createdBy: ID! - User ID who created the user.
+    - email: String! - Email address of the user.
+    - lastLoginAt: DateTime - Date and time when the user last logged in.
+    - multiFactorAuthentication: MultiFactorAuthenticationMode - Multi-factor authentication mode for the user (SMS, SMS_NOT_VERIFIED, EMAIL, EMAIL_NOT_VERIFIED, NOT_VERIFIED).
+    - multiFactorAuthenticationPhone: String - Phone number used for multi-factor authentication.
+    - organizations: [ID!]! - List of organization IDs associated with the user.
+    - status: UserStatus - Status of the user (ACTIVE, DISABLED).
+    - updatedAt: DateTime! - Date and time when the user was last updated. An RFC-3339 compliant DateTime Scalar.
+    - updatedBy: ID! - User ID who last updated the user.Examples:
+```graphql
+query GetUser($email: String) {
+  user(email: $email) {
+    id
+    createdAt
+    createdBy
+    email
+    lastLoginAt
+    multiFactorAuthentication
+    multiFactorAuthenticationPhone
+    organizations
+    status
+    updatedAt
+    updatedBy
+  }
+}
+```
+Variables:
+```json
+{
+  "email": "john.doe@example.com"
+}
+```

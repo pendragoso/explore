@@ -1,0 +1,134 @@
+Here is the schema type definition, consume it and wait for further instruction:
+type Mutation {
+roleValidateSlug(input: String!): Boolean
+}
+Use GraphQL schema type definition provided, generate a title for the schema, detailed description for each field and an example query/mutation using variables. Make sure to have 2 additional space for each level of nesting and all fields are present.
+Title: Credential management schema
+Query details:
+- credentials(first: Int = 10, after: String, filter: CredentialFilter): CredentialConnection
+  - first: Int - Number of credentials to fetch, default is 10.
+  - after: String - Cursor for pagination.
+  - filter: CredentialFilter - Filter credentials based on certain criteria.
+    - type: CredentialType - Filter by credential type (API_TOKEN, USER_TOKEN, HELLO_TOKEN, SERVICE_TOKEN).
+    - user: ID - Filter by user ID.
+    - expiredAtBefore: DateTime - Filter by credentials that expired before a specific date.
+    - expiredAtAfter: DateTime - Filter by credentials that expired after a specific date.
+  - CredentialConnection - Connection object for paginated credentials.
+    - edges: [CredentialEdge] - List of credential edges.
+      - cursor: String - Cursor for pagination.
+      - node: Credential - Credential node.
+        - id: ID! - Unique identifier for the credential.
+        - createdAt: DateTime! - Date and time when the credential was created.
+        - createdBy: ID! - User ID who created the credential.
+        - expiredAt: String - Expiration date of the credential.
+        - lastUsedAt: String - Last used date of the credential.
+        - mode: Mode! - Mode of the credential (LIVE or TEST).
+        - name: String - Name of the credential.
+        - organization: ID! - Organization ID associated with the credential.
+        - user: User - User associated with the credential.
+        - multiFactorAuthenticated: MultiFactorAuthenticated - Multi-factor authentication status (IN_PROGRESS, VERIFIED, NOT_VERIFIED).
+        - roles: [ID!] - List of role IDs associated with the credential.
+        - assignableRoles: [ID] - List of assignable role IDs.
+        - type: CredentialType - Type of the credential (API_TOKEN, USER_TOKEN, HELLO_TOKEN, SERVICE_TOKEN).
+        - updatedAt: DateTime! - Date and time when the credential was last updated.
+        - updatedBy: ID! - User ID who last updated the credential.
+    - pageInfo: PageInfo - Pagination information.
+      - hasPreviousPage: Boolean! - Indicates if there is a previous page.
+      - hasNextPage: Boolean! - Indicates if there is a next page.
+      - startCursor: String - Start cursor for pagination.
+      - endCursor: String - End cursor for pagination.
+
+Examples:
+```graphql
+query GetCredentials($first: Int, $after: String, $filter: CredentialFilter) {
+  credentials(first: $first, after: $after, filter: $filter) {
+    edges {
+      cursor
+      node {
+        id
+        createdAt
+        createdBy
+        expiredAt
+        lastUsedAt
+        mode
+        name
+        organization
+        user {
+          id
+          email
+        }
+        multiFactorAuthenticated
+        roles
+        assignableRoles
+        type
+        updatedAt
+        updatedBy
+      }
+    }
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+  }
+}
+```
+Variables:
+```json
+{
+  "first": 5,
+  "after": null,
+  "filter": {
+    "type": "API_TOKEN",
+    "user": "123",
+    "expiredAtBefore": "2022-01-01T00:00:00Z",
+    "expiredAtAfter": "2021-01-01T00:00:00Z"
+  }
+}
+```
+##
+Use GraphQL schema type definition provided, generate a title for the schema, detailed description for each field and an example query/mutation using variables. Make sure to have 2 additional space for each level of nesting and all fields are present.
+Title: User Management Schema
+Query details:
+- user(email: String): User
+  - email: String - Email address of the user to fetch.
+  - User
+    - id: String! - Unique identifier for the user.
+    - createdAt: DateTime! - Date and time when the user was created.
+    - createdBy: ID! - User ID who created the user.
+    - email: String! - Email address of the user.
+    - lastLoginAt: DateTime - Date and time when the user last logged in.
+    - multiFactorAuthentication: MultiFactorAuthenticationMode - Multi-factor authentication mode for the user (SMS, SMS_NOT_VERIFIED, EMAIL, EMAIL_NOT_VERIFIED, NOT_VERIFIED).
+    - multiFactorAuthenticationPhone: String - Phone number used for multi-factor authentication.
+    - organizations: [ID!]! - List of organization IDs associated with the user.
+    - status: UserStatus - Status of the user (ACTIVE, DISABLED).
+    - updatedAt: DateTime! - Date and time when the user was last updated. An RFC-3339 compliant DateTime Scalar.
+    - updatedBy: ID! - User ID who last updated the user.
+
+Examples:
+```graphql
+query GetUser($email: String) {
+  user(email: $email) {
+    id
+    createdAt
+    createdBy
+    email
+    lastLoginAt
+    multiFactorAuthentication
+    multiFactorAuthenticationPhone
+    organizations
+    status
+    updatedAt
+    updatedBy
+  }
+}
+```
+Variables:
+```json
+{
+  "email": "john.doe@example.com"
+}
+```
+##
+Use GraphQL schema type definition provided, generate a title for the schema, detailed description for each field and an example query/mutation using variables. Make sure to have 2 additional space for each level of nesting and all fields are present.

@@ -1,0 +1,4522 @@
+{
+  "__schema": {
+    "directives": [
+      {
+        "args": [
+          {
+            "defaultValue": "\"No longer supported\"",
+            "deprecationReason": null,
+            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formattedin [Markdown](https://daringfireball.net/projects/markdown/).",
+            "isDeprecated": false,
+            "name": "reason",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "description": "Marks an element of a GraphQL schema as no longer supported.",
+        "isRepeatable": false,
+        "locations": ["ENUM_VALUE", "FIELD_DEFINITION"],
+        "name": "deprecated"
+      },
+      {
+        "args": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Included when true.",
+            "isDeprecated": false,
+            "name": "if",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
+        "isRepeatable": false,
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "name": "include"
+      },
+      {
+        "args": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Skipped when true.",
+            "isDeprecated": false,
+            "name": "if",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
+        "isRepeatable": false,
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "name": "skip"
+      }
+    ],
+    "mutationType": null,
+    "queryType": {
+      "name": "WeaviateObj"
+    },
+    "subscriptionType": null,
+    "types": [
+      {
+        "description": "An object allowing Aggregation of %ss on a local Weaviate",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "ask",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "QnATransformersAggregateSubheadingsAskInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Specify which properties to group by",
+                "isDeprecated": false,
+                "name": "groupBy",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "hybrid",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AggregateObjectsSubheadingsHybridInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "limit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearObject",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AggregateObjectsSubheadingsNearObjectInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearText",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "Txt2VecCohereAggregateSubheadingsNearTextInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearVector",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AggregateObjectsSubheadingsNearVectorInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "objectLimit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Filter options for a local Get query, used to convert the result to the specified filters",
+                "isDeprecated": false,
+                "name": "where",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AggregateObjectsSubheadingsWhereInpObj",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": "subheading search",
+            "isDeprecated": false,
+            "name": "Subheadings",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AggregateSubheadings",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateObjectsObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "Hybrid search",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Search weight",
+            "isDeprecated": false,
+            "name": "alpha",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Query string",
+            "isDeprecated": false,
+            "name": "query",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Vector search",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsHybridInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the uuid format",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsNearObjectInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Target vector to be used in kNN search",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsNearVectorInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The maximum distance from the point specified geoCoordinates.",
+            "isDeprecated": false,
+            "name": "max",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsWhereGeoRangeDistanceInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The latitude (in decimal format) of the geoCoordinates to search around.",
+            "isDeprecated": false,
+            "name": "latitude",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The longitude (in decimal format) of the geoCoordinates to search around.",
+            "isDeprecated": false,
+            "name": "longitude",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsWhereGeoRangeGeoCoordinatesInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The distance from the point specified via geoCoordinates.",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "AggregateObjectsSubheadingsWhereGeoRangeDistanceInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The geoCoordinates that form the center point of the search.",
+            "isDeprecated": false,
+            "name": "geoCoordinates",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "AggregateObjectsSubheadingsWhereGeoRangeGeoCoordinatesInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsWhereGeoRangeInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operands that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operands",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "AggregateObjectsSubheadingsWhereOperandsInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operators that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operator",
+            "type": {
+              "kind": "ENUM",
+              "name": "AggregateObjectsSubheadingsWhereOperatorEnum",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the Objects fields to the property name (e.g. ['Things', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Boolean value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueBoolean",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueDate",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify both geo-coordinates (latitude and longitude as decimals) and a maximum distance from the described coordinates. The search will return any result which is located less than or equal to the specified maximum distance in km away from the specified point.",
+            "isDeprecated": false,
+            "name": "valueGeoRange",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AggregateObjectsSubheadingsWhereGeoRangeInpObj",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify an Integer value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueInt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Float value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueNumber",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueString",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Text value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueText",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsWhereInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing the Operands that can be applied to a 'where' filter",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operands that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operands",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "AggregateObjectsSubheadingsWhereOperandsInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operators that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operator",
+            "type": {
+              "kind": "ENUM",
+              "name": "AggregateObjectsSubheadingsWhereOperatorEnum",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the Objects fields to the property name (e.g. ['Things', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Boolean value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueBoolean",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueDate",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify both geo-coordinates (latitude and longitude as decimals) and a maximum distance from the described coordinates. The search will return any result which is located less than or equal to the specified maximum distance in km away from the specified point.",
+            "isDeprecated": false,
+            "name": "valueGeoRange",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "AggregateObjectsSubheadingsWhereGeoRangeInpObj",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify an Integer value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueInt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Float value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueNumber",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueString",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Text value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueText",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "AggregateObjectsSubheadingsWhereOperandsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing the Operators that can be applied to a 'where' filter",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "And"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Equal"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "GreaterThan"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "GreaterThanEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "IsNull"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "LessThan"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "LessThanEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Like"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Not"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "NotEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Or"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "WithinGeoRange"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "AggregateObjectsSubheadingsWhereOperatorEnum",
+        "possibleTypes": null
+      },
+      {
+        "description": "subheading search",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Indicates the group of returned data",
+            "isDeprecated": false,
+            "name": "groupedBy",
+            "type": {
+              "kind": "OBJECT",
+              "name": "AggregateSubheadingsGroupedByObj",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "An object used to Get Meta information about Objects on a local Weaviate",
+            "isDeprecated": false,
+            "name": "meta",
+            "type": {
+              "kind": "OBJECT",
+              "name": "AggregateSubheadingsMetaObject",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Aggregate this property\"prompt\"",
+            "isDeprecated": false,
+            "name": "prompt",
+            "type": {
+              "kind": "OBJECT",
+              "name": "AggregateSubheadingspromptObj",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Aggregate this property\"subheading\"",
+            "isDeprecated": false,
+            "name": "subheading",
+            "type": {
+              "kind": "OBJECT",
+              "name": "AggregateSubheadingssubheadingObj",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadings",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing the path and value of the grouped property",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The path of the grouped property",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The value of the grouped property",
+            "isDeprecated": false,
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingsGroupedByObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "count",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingsMetaObject",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing Aggregation information about this property",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The total amount of found instances for this property",
+            "isDeprecated": false,
+            "name": "count",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "limit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": "An object containing data about the most frequently occurring values for this property",
+            "isDeprecated": false,
+            "name": "topOccurrences",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AggregateSubheadingspromptTopOccurrencesObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Aggregate on the total amount of found property values",
+            "isDeprecated": false,
+            "name": "type",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingspromptObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing data about the most frequently occurring values for this property",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "How often the most frequently occurring value for this property occurs",
+            "isDeprecated": false,
+            "name": "occurs",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The most frequently occurring value for this property",
+            "isDeprecated": false,
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingspromptTopOccurrencesObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing Aggregation information about this property",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The total amount of found instances for this property",
+            "isDeprecated": false,
+            "name": "count",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "limit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": "An object containing data about the most frequently occurring values for this property",
+            "isDeprecated": false,
+            "name": "topOccurrences",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AggregateSubheadingssubheadingTopOccurrencesObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Aggregate on the total amount of found property values",
+            "isDeprecated": false,
+            "name": "type",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingssubheadingObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing data about the most frequently occurring values for this property",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "How often the most frequently occurring value for this property occurs",
+            "isDeprecated": false,
+            "name": "occurs",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The most frequently occurring value for this property",
+            "isDeprecated": false,
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "AggregateSubheadingssubheadingTopOccurrencesObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "possibleTypes": null
+      },
+      {
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "SCALAR",
+        "name": "Float",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object used to get %ss on a local Weaviate",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the results after a given ID",
+                "isDeprecated": false,
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "ask",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "QnATransformersGetObjectsSubheadingsAskInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "bm25",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsHybridGetBm25InpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "group",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsGroupInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "groupBy",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsGroupByInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "hybrid",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsHybridInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "limit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearObject",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsNearObjectInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearText",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "Txt2VecCohereGetObjectsSubheadingsNearTextInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "nearVector",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsNearVectorInpObj",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Show the results after the first x results (pagination option)",
+                "isDeprecated": false,
+                "name": "offset",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "sort",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GetObjectsSubheadingsSortInpObj",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "Filter options for a local Get query, used to convert the result to the specified filters",
+                "isDeprecated": false,
+                "name": "where",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "GetObjectsSubheadingsWhereInpObj",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": "subheading search",
+            "isDeprecated": false,
+            "name": "Subheadings",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Subheadings",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "GetObjectsObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "Specify the property of the class to group by",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the number of groups to be created",
+            "isDeprecated": false,
+            "name": "groups",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the number of max objects in group",
+            "isDeprecated": false,
+            "name": "objectsPerGroup",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the objects fields to the property name (e.g. ['Things', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsGroupByInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible",
+            "isDeprecated": false,
+            "name": "force",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "type",
+            "type": {
+              "kind": "ENUM",
+              "name": "GetObjectsSubheadingsGroupInpObjTypeEnum",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsGroupInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "closest"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "merge"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "GetObjectsSubheadingsGroupInpObjTypeEnum",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The properties to search in",
+            "isDeprecated": false,
+            "name": "properties",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The query to search for",
+            "isDeprecated": false,
+            "name": "query",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsHybridGetBm25InpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "Hybrid search",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Search weight",
+            "isDeprecated": false,
+            "name": "alpha",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Which properties should be included in the sparse search",
+            "isDeprecated": false,
+            "name": "properties",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Query string",
+            "isDeprecated": false,
+            "name": "query",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Vector search",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsHybridInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the uuid format",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsNearObjectInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Target vector to be used in kNN search",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsNearVectorInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the sort order, either ascending (asc) which is default or descending (desc)",
+            "isDeprecated": false,
+            "name": "order",
+            "type": {
+              "kind": "ENUM",
+              "name": "GetObjectsSubheadingsSortInpObjTypeEnum",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the Objects fields to the property name (e.g. ['Get', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsSortInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "asc"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "desc"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "GetObjectsSubheadingsSortInpObjTypeEnum",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The maximum distance from the point specified geoCoordinates.",
+            "isDeprecated": false,
+            "name": "max",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsWhereGeoRangeDistanceInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The latitude (in decimal format) of the geoCoordinates to search around.",
+            "isDeprecated": false,
+            "name": "latitude",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The longitude (in decimal format) of the geoCoordinates to search around.",
+            "isDeprecated": false,
+            "name": "longitude",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsWhereGeoRangeGeoCoordinatesInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The distance from the point specified via geoCoordinates.",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "GetObjectsSubheadingsWhereGeoRangeDistanceInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The geoCoordinates that form the center point of the search.",
+            "isDeprecated": false,
+            "name": "geoCoordinates",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "GetObjectsSubheadingsWhereGeoRangeGeoCoordinatesInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsWhereGeoRangeInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operands that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operands",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "GetObjectsSubheadingsWhereOperandsInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operators that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operator",
+            "type": {
+              "kind": "ENUM",
+              "name": "GetObjectsSubheadingsWhereOperatorEnum",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the Objects fields to the property name (e.g. ['Things', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Boolean value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueBoolean",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueDate",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify both geo-coordinates (latitude and longitude as decimals) and a maximum distance from the described coordinates. The search will return any result which is located less than or equal to the specified maximum distance in km away from the specified point.",
+            "isDeprecated": false,
+            "name": "valueGeoRange",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GetObjectsSubheadingsWhereGeoRangeInpObj",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify an Integer value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueInt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Float value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueNumber",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueString",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Text value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueText",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsWhereInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing the Operands that can be applied to a 'where' filter",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operands that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operands",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "GetObjectsSubheadingsWhereOperandsInpObj",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Contains the Operators that can be applied to a 'where' filter",
+            "isDeprecated": false,
+            "name": "operator",
+            "type": {
+              "kind": "ENUM",
+              "name": "GetObjectsSubheadingsWhereOperatorEnum",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify the path from the Objects fields to the property name (e.g. ['Things', 'City', 'population'] leads to the 'population' property of a 'City' object)",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Boolean value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueBoolean",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueDate",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify both geo-coordinates (latitude and longitude as decimals) and a maximum distance from the described coordinates. The search will return any result which is located less than or equal to the specified maximum distance in km away from the specified point.",
+            "isDeprecated": false,
+            "name": "valueGeoRange",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "GetObjectsSubheadingsWhereGeoRangeInpObj",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify an Integer value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueInt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Float value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueNumber",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a String value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueString",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Specify a Text value that the target property will be compared to",
+            "isDeprecated": false,
+            "name": "valueText",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "GetObjectsSubheadingsWhereOperandsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing the Operators that can be applied to a 'where' filter",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "And"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Equal"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "GreaterThan"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "GreaterThanEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "IsNull"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "LessThan"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "LessThanEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Like"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Not"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "NotEqual"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "Or"
+          },
+          {
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "WithinGeoRange"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "GetObjectsSubheadingsWhereOperatorEnum",
+        "possibleTypes": null
+      },
+      {
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "SCALAR",
+        "name": "Int",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Properties which contains text",
+            "isDeprecated": false,
+            "name": "properties",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Question to be answered",
+            "isDeprecated": false,
+            "name": "question",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "QnATransformersAggregateSubheadingsAskInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Properties which contains text",
+            "isDeprecated": false,
+            "name": "properties",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Question to be answered",
+            "isDeprecated": false,
+            "name": "question",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "QnATransformersGetObjectsSubheadingsAskInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "SCALAR",
+        "name": "String",
+        "possibleTypes": null
+      },
+      {
+        "description": "subheading search",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "_additional",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditional",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Content that will be vectorized",
+            "isDeprecated": false,
+            "name": "prompt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Response",
+            "isDeprecated": false,
+            "name": "subheading",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "Subheadings",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "answer",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalAnswer",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "classification",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalClassification",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "creationTimeUnix",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "explainScore",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "algorithm",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "dimensions",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "iterations",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "learningRate",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "defaultValue": null,
+                "deprecationReason": null,
+                "description": "",
+                "isDeprecated": false,
+                "name": "perplexity",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "featureProjection",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalFeatureProjection",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "group",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalGroup",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The UUID of a Object, assigned by its local Weaviate",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "lastUpdateTimeUnix",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "score",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditional",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "endPosition",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "hasAnswer",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "property",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "result",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "startPosition",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalAnswer",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "basedOn",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "classifiedFields",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "completed",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "scope",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalClassification",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalFeatureProjection",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "count",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "groupedBy",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalGroupGroupedBy",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "hits",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SubheadingsAdditionalGroupHits",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "maxDistance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "minDistance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalGroup",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "path",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalGroupGroupedBy",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "_additional",
+            "type": {
+              "kind": "OBJECT",
+              "name": "SubheadingsAdditionalGroupHitsAdditional",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Content that will be vectorized",
+            "isDeprecated": false,
+            "name": "prompt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Response",
+            "isDeprecated": false,
+            "name": "subheading",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalGroupHits",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "vector",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "SubheadingsAdditionalGroupHitsAdditional",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Keywords are a list of search terms. Array type, e.g. [\"keyword 1\", \"keyword 2\"]",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible",
+            "isDeprecated": false,
+            "name": "force",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "objects",
+            "isDeprecated": false,
+            "name": "objects",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Txt2VecCohereAggregateSubheadingsMoveAwayFromMovementObjectsInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereAggregateSubheadingsMoveAwayFrom",
+        "possibleTypes": null
+      },
+      {
+        "description": "Movement Object",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "id of an object",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereAggregateSubheadingsMoveAwayFromMovementObjectsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Keywords are a list of search terms. Array type, e.g. [\"keyword 1\", \"keyword 2\"]",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible",
+            "isDeprecated": false,
+            "name": "force",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "objects",
+            "isDeprecated": false,
+            "name": "objects",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Txt2VecCohereAggregateSubheadingsMoveToMovementObjectsInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereAggregateSubheadingsMoveTo",
+        "possibleTypes": null
+      },
+      {
+        "description": "Movement Object",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "id of an object",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereAggregateSubheadingsMoveToMovementObjectsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Move your search term closer to or further away from another vector described by keywords",
+            "isDeprecated": false,
+            "name": "moveAwayFrom",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Txt2VecCohereAggregateSubheadingsMoveAwayFrom",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Move your search term closer to or further away from another vector described by keywords",
+            "isDeprecated": false,
+            "name": "moveTo",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Txt2VecCohereAggregateSubheadingsMoveTo",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereAggregateSubheadingsNearTextInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Keywords are a list of search terms. Array type, e.g. [\"keyword 1\", \"keyword 2\"]",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible",
+            "isDeprecated": false,
+            "name": "force",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "objects",
+            "isDeprecated": false,
+            "name": "objects",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Txt2VecCohereGetObjectsSubheadingsMoveAwayFromMovementObjectsInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereGetObjectsSubheadingsMoveAwayFrom",
+        "possibleTypes": null
+      },
+      {
+        "description": "Movement Object",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "id of an object",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereGetObjectsSubheadingsMoveAwayFromMovementObjectsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Keywords are a list of search terms. Array type, e.g. [\"keyword 1\", \"keyword 2\"]",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible",
+            "isDeprecated": false,
+            "name": "force",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "objects",
+            "isDeprecated": false,
+            "name": "objects",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Txt2VecCohereGetObjectsSubheadingsMoveToMovementObjectsInpObj",
+                "ofType": null
+              }
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereGetObjectsSubheadingsMoveTo",
+        "possibleTypes": null
+      },
+      {
+        "description": "Movement Object",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Concept identifier in the beacon format, such as weaviate://<hostname>/<kind>/id",
+            "isDeprecated": false,
+            "name": "beacon",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "id of an object",
+            "isDeprecated": false,
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereGetObjectsSubheadingsMoveToMovementObjectsInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "An object containing filter options for a local Get query, used to convert the result to the specified filters",
+        "enumValues": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Normalized Distance between the result item and the search vector. Normalized to be between 0 (identical vectors) and 1 (perfect opposite).",
+            "isDeprecated": false,
+            "name": "certainty",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "",
+            "isDeprecated": false,
+            "name": "concepts",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "The required degree of similarity between an object's characteristics and the provided filter values",
+            "isDeprecated": false,
+            "name": "distance",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Move your search term closer to or further away from another vector described by keywords",
+            "isDeprecated": false,
+            "name": "moveAwayFrom",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Txt2VecCohereGetObjectsSubheadingsMoveAwayFrom",
+              "ofType": null
+            }
+          },
+          {
+            "defaultValue": null,
+            "deprecationReason": null,
+            "description": "Move your search term closer to or further away from another vector described by keywords",
+            "isDeprecated": false,
+            "name": "moveTo",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Txt2VecCohereGetObjectsSubheadingsMoveTo",
+              "ofType": null
+            }
+          }
+        ],
+        "interfaces": null,
+        "kind": "INPUT_OBJECT",
+        "name": "Txt2VecCohereGetObjectsSubheadingsNearTextInpObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "Location of the root query",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Filter options for a local Aggregate query, used to convert the result to the specified filters",
+            "isDeprecated": false,
+            "name": "Aggregate",
+            "type": {
+              "kind": "OBJECT",
+              "name": "AggregateObjectsObj",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "Get Objects on a local Weaviate",
+            "isDeprecated": false,
+            "name": "Get",
+            "type": {
+              "kind": "OBJECT",
+              "name": "GetObjectsObj",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "WeaviateObj",
+        "possibleTypes": null
+      },
+      {
+        "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "isRepeatable",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "locations",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "__DirectiveLocation",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": "false",
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "args",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__Directive",
+        "possibleTypes": null
+      },
+      {
+        "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a query operation.",
+            "isDeprecated": false,
+            "name": "QUERY"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a mutation operation.",
+            "isDeprecated": false,
+            "name": "MUTATION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a subscription operation.",
+            "isDeprecated": false,
+            "name": "SUBSCRIPTION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a field.",
+            "isDeprecated": false,
+            "name": "FIELD"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a fragment definition.",
+            "isDeprecated": false,
+            "name": "FRAGMENT_DEFINITION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a fragment spread.",
+            "isDeprecated": false,
+            "name": "FRAGMENT_SPREAD"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an inline fragment.",
+            "isDeprecated": false,
+            "name": "INLINE_FRAGMENT"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a variable definition.",
+            "isDeprecated": false,
+            "name": "VARIABLE_DEFINITION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a schema definition.",
+            "isDeprecated": false,
+            "name": "SCHEMA"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a scalar definition.",
+            "isDeprecated": false,
+            "name": "SCALAR"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an object type definition.",
+            "isDeprecated": false,
+            "name": "OBJECT"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a field definition.",
+            "isDeprecated": false,
+            "name": "FIELD_DEFINITION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an argument definition.",
+            "isDeprecated": false,
+            "name": "ARGUMENT_DEFINITION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an interface definition.",
+            "isDeprecated": false,
+            "name": "INTERFACE"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to a union definition.",
+            "isDeprecated": false,
+            "name": "UNION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an enum definition.",
+            "isDeprecated": false,
+            "name": "ENUM"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an enum value definition.",
+            "isDeprecated": false,
+            "name": "ENUM_VALUE"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an input object type definition.",
+            "isDeprecated": false,
+            "name": "INPUT_OBJECT"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Location adjacent to an input object field definition.",
+            "isDeprecated": false,
+            "name": "INPUT_FIELD_DEFINITION"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "__DirectiveLocation",
+        "possibleTypes": null
+      },
+      {
+        "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "isDeprecated",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "deprecationReason",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__EnumValue",
+        "possibleTypes": null
+      },
+      {
+        "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": "false",
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "args",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "type",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "isDeprecated",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "deprecationReason",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__Field",
+        "possibleTypes": null
+      },
+      {
+        "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "type",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "A GraphQL-formatted string representing the default value for this input value.",
+            "isDeprecated": false,
+            "name": "defaultValue",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "isDeprecated",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "deprecationReason",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__InputValue",
+        "possibleTypes": null
+      },
+      {
+        "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "A list of all types supported by this server.",
+            "isDeprecated": false,
+            "name": "types",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "The type that query operations will be rooted at.",
+            "isDeprecated": false,
+            "name": "queryType",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "__Type",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+            "isDeprecated": false,
+            "name": "mutationType",
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "If this server support subscription, the type that subscription operations will be rooted at.",
+            "isDeprecated": false,
+            "name": "subscriptionType",
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": "A list of all directives supported by this server.",
+            "isDeprecated": false,
+            "name": "directives",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Directive",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__Schema",
+        "possibleTypes": null
+      },
+      {
+        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "enumValues": null,
+        "fields": [
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "kind",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "__TypeKind",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "specifiedByURL",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": "false",
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "fields",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Field",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "interfaces",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "possibleTypes",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__Type",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": "false",
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "enumValues",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__EnumValue",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "args": [
+              {
+                "defaultValue": "false",
+                "deprecationReason": null,
+                "description": null,
+                "isDeprecated": false,
+                "name": "includeDeprecated",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            ],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "inputFields",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "__InputValue",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "args": [],
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "ofType",
+            "type": {
+              "kind": "OBJECT",
+              "name": "__Type",
+              "ofType": null
+            }
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "kind": "OBJECT",
+        "name": "__Type",
+        "possibleTypes": null
+      },
+      {
+        "description": "An enum describing what kind of type a given `__Type` is.",
+        "enumValues": [
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is a scalar.",
+            "isDeprecated": false,
+            "name": "SCALAR"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is an object. `fields` and `interfaces` are valid fields.",
+            "isDeprecated": false,
+            "name": "OBJECT"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields.",
+            "isDeprecated": false,
+            "name": "INTERFACE"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is a union. `possibleTypes` is a valid field.",
+            "isDeprecated": false,
+            "name": "UNION"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is an enum. `enumValues` is a valid field.",
+            "isDeprecated": false,
+            "name": "ENUM"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is an input object. `inputFields` is a valid field.",
+            "isDeprecated": false,
+            "name": "INPUT_OBJECT"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is a list. `ofType` is a valid field.",
+            "isDeprecated": false,
+            "name": "LIST"
+          },
+          {
+            "deprecationReason": null,
+            "description": "Indicates this type is a non-null. `ofType` is a valid field.",
+            "isDeprecated": false,
+            "name": "NON_NULL"
+          }
+        ],
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "kind": "ENUM",
+        "name": "__TypeKind",
+        "possibleTypes": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+Title: Role Management Schema
+Query details:
+- rolesGlobal(first: Int = 10, after: String, filter: RoleFilter): RoleConnection
+  - first: Int - Number of roles to fetch, default is 10.
+  - after: String - Cursor for pagination.
+  - filter: RoleFilter - Filter roles based on certain criteria.
+    - name: String - Filter by role name.
+    - slug: String - Filter by role slug.
+    - type: RoleType - Filter by role type (PUBLIC, INTERNAL, CUSTOM, SUBSCRIPTION, ORGANIZATIONAL).
+  - RoleConnection - Connection object for paginated roles.
+    - edges: [RoleEdge] - List of role edges.
+      - cursor: String - Cursor for pagination.
+      - node: Role - Role node.
+        - id: ID! - Unique identifier for the role.
+        - createdAt: DateTime! - Date and time when the role was created.
+        - createdBy: ID! - User ID who created the role.
+        - description: String - Description of the role.
+        - name: String! - Name of the role.
+        - slug: String! - Unique slug for the role.
+        - type: RoleType! - Type of the role (PUBLIC, INTERNAL, CUSTOM, SUBSCRIPTION, ORGANIZATIONAL).
+        - permissions: [String!]! - List of permissions associated with the role.
+        - organization: ID - Organization ID associated with the role.
+        - updatedAt: DateTime! - Date and time when the role was last updated.
+        - updatedBy: ID! - User ID who last updated the role.
+    - pageInfo: PageInfo - Pagination information.
+      - hasPreviousPage: Boolean! - Indicates if there is a previous page.
+      - hasNextPage: Boolean! - Indicates if there is a next page.
+      - startCursor: String - Start cursor for pagination.
+      - endCursor: String - End cursor for pagination.Examples:
+```graphql
+query GetRolesGlobal($first: Int, $after: String, $filter: RoleFilter) {
+  rolesGlobal(first: $first, after: $after, filter: $filter) {
+    edges {
+      cursor
+      node {
+        id
+        createdAt
+        createdBy
+        description
+        name
+        slug
+        type
+        permissions
+        organization
+        updatedAt
+        updatedBy
+      }
+    }
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+  }
+}
+```
+Variables:
+```json
+{
+  "first": 5,
+  "after": null,
+  "filter": {
+    "name": "Admin",
+    "slug": "admin",
+    "type": "INTERNAL"
+  }
+}
+```

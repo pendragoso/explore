@@ -1,0 +1,6 @@
+{
+  /**
+    Absolute paths are preferred for imports in Nextjs projects.
+    */
+  "typescript.preferences.importModuleSpecifier": "non-relative"
+}

@@ -1,0 +1,46 @@
+Title: Permission Management Schema
+Query details:
+- permissions(first: Int = 10, after: String): PermissionConnection
+  - first: Int - Number of permissions to fetch, default is 10.
+  - after: String - Cursor for pagination.
+  - PermissionConnection - Connection object for paginated permissions.
+    - edges: [PermissionEdge] - List of permission edges.
+      - cursor: String - Cursor for pagination.
+      - node: Permission - Permission node.
+        - id: ID! - Unique identifier for the permission.
+        - createdAt: DateTime! - Date and time when the permission was created.
+        - description: String! - Description of the permission.
+        - name: String! - Name of the permission.
+    - pageInfo: PageInfo - Pagination information.
+      - hasPreviousPage: Boolean! - Indicates if there is a previous page.
+      - hasNextPage: Boolean! - Indicates if there is a next page.
+      - startCursor: String - Start cursor for pagination.
+      - endCursor: String - End cursor for pagination.Examples:
+```graphql
+query GetPermissions($first: Int, $after: String) {
+  permissions(first: $first, after: $after) {
+    edges {
+      cursor
+      node {
+        id
+        createdAt
+        description
+        name
+      }
+    }
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+  }
+}
+```
+Variables:
+```json
+{
+  "first": 5,
+  "after": null
+}
+```

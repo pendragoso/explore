@@ -1,0 +1,50 @@
+Title: Role Management Schema
+Mutation details:
+- roleGlobalCreate(input: RoleGlobalCreateInput): Role
+  - input: RoleGlobalCreateInput - Input object for creating a global role.
+    - permissions: [String!]! - List of permissions associated with the role.
+    - name: String! - Name of the role.
+    - slug: String! - Unique slug for the role, no spaces allowed.
+    - description: String - Description of the role.
+    - type: RoleType! - Type of the role (PUBLIC, INTERNAL, CUSTOM, SUBSCRIPTION, ORGANIZATIONAL).
+  - Role
+    - id: ID! - Unique identifier for the role.
+    - createdAt: DateTime! - Date and time when the role was created. An RFC-3339 compliant DateTime Scalar.
+    - createdBy: ID! - User ID who created the role.
+    - description: String - Description of the role.
+    - name: String! - Name of the role.
+    - slug: String! - Unique slug for the role, no spaces allowed.
+    - type: RoleType! - Type of the role (PUBLIC, INTERNAL, CUSTOM, SUBSCRIPTION, ORGANIZATIONAL).
+    - permissions: [String!]! - List of permissions associated with the role.
+    - organization: ID - Organization ID associated with the role.
+    - updatedAt: DateTime! - Date and time when the role was last updated. An RFC-3339 compliant DateTime Scalar.
+    - updatedBy: ID! - User ID who last updated the role.Example:
+```graphql
+mutation CreateRole($input: RoleGlobalCreateInput) {
+  roleGlobalCreate(input: $input) {
+    id
+    createdAt
+    createdBy
+    description
+    name
+    slug
+    type
+    permissions
+    organization
+    updatedAt
+    updatedBy
+  }
+}
+```
+Variables:
+```json
+{
+  "input": {
+    "permissions": ["read", "write"],
+    "name": "Example Role",
+    "slug": "example-role",
+    "description": "This is an example role.",
+    "type": "CUSTOM"
+  }
+}
+```

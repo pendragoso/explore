@@ -1,0 +1,1896 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`extractSchemaCHunk big query (root internal) > should return new schema with optional fields only 1`] = `
+"type Query {
+  root: Root
+}
+
+type Root {
+  cartons: [Carton]
+  exchangeRates: [ExchangeRate!]!
+  items: [Item]
+  restrictedItems: [RestrictedItem]
+  landedCosts: [LandedCost]
+  order: Order
+  parties: [Party]
+  createdAt: DateTime!
+  mode: Mode!
+  updatedAt: DateTime!
+  appliedRules: [AppliedRule]
+  shipmentRatings: [ShipmentRating]
+}
+
+type Carton {
+  amountInsured: Decimal
+  createdAt: DateTime!
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  items: [CartonItem!]
+  length: Decimal!
+  mode: Mode!
+  packagingOption: PackagingOption
+  shipFrom: Location
+  shipTo: Location
+  type: PackagingType!
+  updatedAt: DateTime!
+  weight: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+scalar Decimal
+
+scalar DateTime
+
+enum DimensionalUnitCode {
+  CENTIMETER
+  DECIMETER
+  FOOT
+  INCH
+  METER
+  MILLIMETER
+  YARD
+}
+
+type CartonItem {
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  item: Item!
+  length: Decimal!
+  type: PackagingType!
+  weight: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+type Item {
+  customsSpecs: [CustomsSpec!]!
+  amount: Decimal!
+  attributes: [ItemAttribute]
+  catalogItem: CatalogItem
+  countryOfOrigin: CountryCode
+  countryOfOriginSource: ItemValueSource
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  description: String
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  hsCode: String
+  hsCodeSource: ItemValueSource
+  imageUrl: String
+  itemType: ItemType
+  measurements: [ItemMeasurement]
+  metadata: [ItemMetadata]
+  mode: Mode!
+  name: String
+  provinceOfOrigin: String
+  restriction: RestrictedItem
+  sku: String
+  updatedAt: DateTime!
+}
+
+type CustomsSpec implements Node {
+  amountSubtotals: CustomsSpecAmountSubtotals!
+  attributes: [CustomsSpecAttribute!]
+  cartons: [Carton!]
+  clearanceType: ClearanceType
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  customsItems: [CustomsItem!]
+  declarationStatement: String
+  incoterm: IncotermCode!
+  metadata: [CustomsMetadata!]
+  mode: Mode!
+  parties: [Party!]
+  reasonForExport: LandedCostEndUse!
+  serviceLevel: String
+  trackingNumber: String
+  updatedAt: DateTime!
+}
+
+interface Node
+
+type CustomsSpecAmountSubtotals {
+  duties: Decimal
+  fees: Decimal
+  insurance: Decimal
+  items: Decimal
+  shipping: Decimal
+  taxes: Decimal
+}
+
+type CustomsSpecAttribute {
+  source: CustomsSpecSourceType!
+  type: CustomsSpecAttributeType!
+}
+
+enum CustomsSpecSourceType {
+  API_REQUEST
+  CATALOG
+  CLASSIFY
+  ORGANIZATION_SETTING
+}
+
+enum CustomsSpecAttributeType {
+  ACCOUNT_NUMBER
+  B13A
+  ECCN
+  EORI
+  ITN
+  ORDER_NUMBER
+  PURCHASE_ORDER_NUMBER
+}
+
+enum ClearanceType {
+  COMMERCIAL
+  POSTAL
+}
+
+enum CurrencyCode {
+  __ISO_CURRENCY_CODE__
+}
+
+type CustomsItem {
+  amount: Decimal!
+  countryOfOrigin: CountryCode!
+  countryOfOriginSource: ItemValueSource!
+  hsCodeSource: ItemValueSource!
+  items: [Item!]!
+  provinceOfOrigin: String
+  provinceOfOriginSource: ItemValueSource
+  quantity: Decimal!
+}
+
+enum CountryCode {
+  __ISO_COUNTRY_CODE__
+}
+
+enum ItemValueSource {
+  API_REQUEST
+  CATALOG
+  ORGANIZATION_SETTING
+}
+
+\\"\\"\\"International Commercial Terms\\"\\"\\"
+enum IncotermCode {
+  CIF
+  CUSTOM
+  DAP
+  DDP
+  FOB
+}
+
+type CustomsMetadata {
+  value: String
+}
+
+enum Mode {
+  LIVE
+  TEST
+}
+
+type Party {
+  createdAt: DateTime!
+  location: Location
+  mode: Mode!
+  person: Person
+  type: PartyType
+  updatedAt: DateTime!
+}
+
+type Location {
+  administrativeArea: String
+  administrativeAreaCode: String
+  countryCode: CountryCode!
+  createdAt: DateTime!
+  latitude: Decimal
+  line1: String
+  line2: String
+  line3: String
+  line4: String
+  locality: String
+  longitude: Decimal
+  metadata: [PartyMetadata]
+  mode: Mode!
+  plusCode: String
+  postalCode: String
+  propertyType: PropertyType
+  updatedAt: DateTime!
+}
+
+type PartyMetadata {
+  value: String
+}
+
+enum PropertyType {
+  COMMERCIAL
+  RESIDENTIAL
+}
+
+type Person {
+  companyName: String
+  createdAt: DateTime!
+  email: String
+  firstName: String
+  lastName: String
+  metadata: [PartyMetadata]
+  mode: Mode!
+  phone: String
+  updatedAt: DateTime!
+}
+
+enum PartyType {
+  DESTINATION
+  ORIGIN
+  PAYEE
+  PAYOR
+}
+
+enum LandedCostEndUse {
+  FOR_RESALE
+  NOT_FOR_RESALE
+}
+
+type ItemAttribute {
+  key: String
+  value: String
+}
+
+type CatalogItem {
+  amount: Decimal
+  attributes: [ItemAttribute]
+  brand: String
+  catalogItemUrl: String
+  classification: ID
+  configurations: [CatalogItemConfiguration]
+  countryOfOrigin: CountryCode
+  createdAt: DateTime!
+  currencyCode: CurrencyCode
+  description: String
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  hsCode: String
+  hsCodes: [CatalogItemHsCode]
+  imageUrl: String
+  itemType: ItemType
+  material: String
+  measurements: [ItemMeasurement]
+  metadata: [ItemMetadata]
+  name: String
+  productId: String
+  provinceOfOrigin: String
+  restrictedCountries: [CountryCode]
+  sku: String
+  source: CatalogItemSource!
+  updatedAt: DateTime!
+}
+
+type CatalogItemConfiguration {
+  amount: Decimal
+  classification: ID
+  createdAt: DateTime!
+  currencyCode: CurrencyCode
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  id: Int
+  shipToCountry: CountryCode
+  updatedAt: DateTime!
+}
+
+enum DutyTaxFeeConfiguration {
+  EXCLUDE_ALL
+  EXCLUDE_DUTY
+  EXCLUDE_FEE
+  EXCLUDE_TAX
+  INCLUDE_ALL
+  INCLUDE_TAX
+}
+
+type CatalogItemHsCode {
+  classification: ID
+  createdAt: DateTime!
+  hsCode: String
+  id: Int
+  shipToCountry: CountryCode
+  updatedAt: DateTime!
+}
+
+enum ItemType {
+  DIGITAL_GOOD
+  PHYSICAL_GOOD
+  SERVICE
+  SUBSCRIPTION
+}
+
+type ItemMeasurement {
+  source: ItemValueSource!
+  type: ItemMeasurementType!
+  unitOfMeasure: ItemUnitOfMeasure!
+  value: Decimal!
+}
+
+enum ItemMeasurementType {
+  HEIGHT
+  LENGTH
+  WEIGHT
+  WIDTH
+}
+
+enum ItemUnitOfMeasure {
+  CENTIMETER
+  FOOT
+  GRAM
+  INCH
+  KILOGRAM
+  METER
+  MILLIMETER
+  OUNCE
+  POUND
+  YARD
+}
+
+type ItemMetadata {
+  key: String
+  value: String
+}
+
+enum CatalogItemSource {
+  CLASSIFICATION
+  LEGACY_MIGRATION
+  USER_PROVIDED
+}
+
+type RestrictedItem {
+  catalogItem: CatalogItem
+  item: Item!
+  itemRestrictions: ItemRestrictionsResult
+  rule: Rule
+}
+
+type ItemRestrictionsResult
+
+type Rule {
+  createdAt: DateTime!
+  endsAt: DateTime
+  mode: Mode!
+  startsAt: DateTime
+  updatedAt: DateTime!
+}
+
+enum PackagingType {
+  ENVELOPE
+  FLAT
+  PACKAGE
+  PAK
+  PARCEL
+  POLYBAG
+  TUBE
+}
+
+enum WeightUnitCode {
+  GRAM
+  KILOGRAM
+  OUNCE
+  POUND
+}
+
+type PackagingOption {
+  createdAt: DateTime!
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  length: Decimal!
+  mode: Mode!
+  source: PackagingOptionSource!
+  type: PackagingType!
+  updatedAt: DateTime!
+  weightCapacity: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+enum PackagingOptionSource {
+  DYNAMIC
+  ORGANIZATION
+}
+
+type ExchangeRate {
+  createdAt: DateTime!
+  expiresAt: DateTime!
+  mode: Mode!
+  rate: Decimal!
+  sourceCurrencyCode: CurrencyCode!
+  targetCurrencyCode: CurrencyCode!
+  targetFormat: CurrencyFormat
+  type: ExchangeRateType!
+}
+
+type CurrencyFormat {
+  currencyCode: CurrencyCode!
+  symbolLocation: CurrencySymbolLocation
+}
+
+enum CurrencySymbolLocation {
+  AFTER
+  BEFORE
+}
+
+enum ExchangeRateType {
+  MID_MARKET
+}
+
+type LandedCost {
+  amountSubtotals: LandedCostAmountSubtotals
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  deMinimis: [DeMinimis!]!
+  duties: [Duty!]!
+  endUse: LandedCostEndUse!
+  fees: [Fee!]!
+  landedCostGuaranteeCode: LandedCostGuaranteeCode!
+  method: IncotermCode!
+  mode: Mode!
+  remittance: [LandedCostRemittance!]!
+
+  \\"\\"\\"\`Root\` resource that this \`LandedCost\` belongs to\\"\\"\\"
+  root: Root
+  shipmentRating: ShipmentRating!
+  tariffRate: LandedCostTariffRate!
+  taxes: [Tax!]!
+  updatedAt: DateTime!
+  taxId: TaxId
+}
+
+type LandedCostAmountSubtotals {
+  duties: Decimal!
+  fees: Decimal!
+  items: Decimal!
+  landedCostTotal: Decimal!
+  shipping: Decimal!
+  taxes: Decimal!
+}
+
+type DeMinimis {
+  method: IncotermCode!
+  threshold: DeMinimisThreshold!
+  type: DeMinimisType!
+}
+
+enum DeMinimisThreshold {
+  ABOVE
+  BELOW
+}
+
+enum DeMinimisType {
+  DUTY
+  FEE
+  TAX
+}
+
+type Duty {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  description: String
+  exchangeRate: ExchangeRate
+  item: Item
+  note: String
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+enum LandedCostFeeType {
+  ADDITIONAL_TARIFF_LINES
+  ADVANCEMENT
+  BROKERAGE_FEE
+  COD
+  COUNTRY
+  CURRENCY_CONVERSION_FEE
+  DDP_SERVICE_FEE
+  DUTY
+  ITEM
+  OTHER
+  SHIPPING
+  ZONOS_LANDED_COST_GUARANTEE
+}
+
+type Fee {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  description: String
+  exchangeRate: ExchangeRate
+  item: Item
+  note: String
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+enum LandedCostGuaranteeCode {
+  NOT_APPLICABLE
+  ZONOS
+}
+
+type LandedCostRemittance {
+  amount: Decimal!
+}
+
+type ShipmentRating {
+  appliedRules: [AppliedRule]
+  amount: Decimal!
+  amountSubtotals: ShipmentRatingSubtotals!
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  details: [ShipmentRatingDetail!]
+  maxTransitAt: DateTime
+  minTransitAt: DateTime
+  multipleShipFromRatings: [ShipmentRating]
+  shipFrom: Location
+  shipTo: Location
+  shipmentRatingCartons: [ShipmentRatingCarton!]!
+  shippingProfile: ShippingProfile
+  updatedAt: DateTime!
+}
+
+type AppliedRule {
+  createdAt: DateTime!
+  rule: Rule!
+}
+
+type ShipmentRatingSubtotals {
+  fuelSurcharge: Decimal
+  insuranceCost: Decimal
+  otherSurcharge: Decimal
+  shipping: Decimal!
+}
+
+type ShipmentRatingDetail {
+  amount: Decimal!
+  type: ShipmentAmountType!
+}
+
+enum ShipmentAmountType {
+  BUFFER
+  DISCOUNT
+  FUEL_SURCHARGE
+  INSURANCE
+  PUBLISHED_RATE
+  SURCHARGE
+}
+
+type ShipmentRatingCarton {
+  amountInsured: Decimal!
+  carton: Carton!
+  chargeableWeight: Decimal
+  dimensionalFactor: Int
+  dimensionalWeight: Decimal
+}
+
+type ShippingProfile {
+  createdAt: DateTime!
+  customServiceLevelCode: String
+  landedCostMethod: LandedCostMethod
+  mode: Mode!
+  serviceLevel: ServiceLevel!
+  shippingPercentIncrease: Decimal
+  shippingRates: [ShippingProfileRateChart!]
+  shippingValueIncrease: Decimal
+  transitTime: TransitTime
+  updatedAt: DateTime!
+}
+
+\\"\\"\\"The method to use for the landed cost calculation.\\"\\"\\"
+enum LandedCostMethod {
+  DAP_FORCED
+  DDP_AND_DAP
+  DDP_FORCED
+  DDP_PREFERRED
+}
+
+type ServiceLevel {
+  parties: [Party]
+  availability: ServiceLevelAvailability!
+  carrier: Carrier!
+  carrierLabelApiCode: String
+  countryConstraints: [CountryConstraint!]
+  createdAt: DateTime!
+  deliveryType: DeliveryType
+  transitTime: TransitTime
+  updatedAt: DateTime!
+}
+
+enum ServiceLevelAvailability {
+  CONTRACTED
+  DISABLED
+  GENERAL
+}
+
+type Carrier {
+  parties: [Party]
+  countryConstraints: [CountryConstraint!]
+  createdAt: DateTime!
+  credentials: [CarrierCredential!]
+  serviceLevels: [ServiceLevel!]
+  updatedAt: DateTime!
+}
+
+type CountryConstraint {
+  constraints: [Constraint]
+  createdAt: DateTime!
+  dutyTaxBilling: BillingOptionCode
+  incoterm: [IncotermCode!]
+  shipFromCountryCodes: [CountryCode!]!
+  shipToCountryCodes: [CountryCode!]!
+  transitTime: TransitTime
+  updatedAt: DateTime!
+  weightUnit: WeightUnitCode
+}
+
+type Constraint {
+  createdAt: DateTime!
+  max: Decimal
+  min: Decimal
+  type: ConstraintType!
+  unitOfMeasure: ConstraintUnitCode!
+  updatedAt: DateTime!
+}
+
+enum ConstraintType {
+  GIRTH
+  GIRTH_AND_LENGTH
+  HEIGHT
+  LENGTH
+  PRICE
+  QUANTITY
+  VOLUME
+  WEIGHT
+  WIDTH
+}
+
+enum ConstraintUnitCode {
+  __ISO_COUNTRY_CODE__
+  BARREL_PETROLEUM
+  BUSHEL_UK
+  BUSHEL_US_DRY
+  CARAT
+  CENTIGRAM
+  CENTILITER_CL
+  CENTIMETER
+  CUBIC_CENTIMETER
+  CUBIC_DECIMETER
+  CUBIC_FOOT
+  CUBIC_INCH
+  CUBIC_METER
+  CUBIC_MILLIMETER
+  CUBIC_YARD
+  DECALITER_DAL
+  DECILITER
+  DECIMETER
+  FLUID_DRAM_FL_DR
+  FLUID_OUNCE_FL_OZ
+  FLUID_OUNCE_UK
+  FOOT
+  GALLON_FLUID
+  GALLON_UK
+  GILL_GI
+  GRAM
+  HECTOLITER
+  INCH
+  KILOGRAM
+  KILOLITER
+  LITER
+  METER
+  MICROLITER
+  MILLIGRAM
+  MILLILITER_ML
+  MILLIMETER
+  MINIM_MIN
+  OUNCE
+  PECK_US_DRY
+  PINT_FLUID
+  PINT_UK
+  PINT_US_DRY
+  POUND
+  QUART_FLUID
+  QUART_UK
+  QUART_US_DRY
+  YARD
+}
+
+enum BillingOptionCode {
+  DDP_AND_DDU
+  SHIPPER_ONLY
+  THIRD_PARTY
+  UNAVAILABLE
+}
+
+type TransitTime {
+  guaranteedDelivery: DateTime
+  max: Int
+  min: Int
+  type: TransitTypeCode
+}
+
+enum TransitTypeCode {
+  BUSINESS_DAYS
+  DAYS
+  WEEKS
+}
+
+type CarrierCredential {
+  createdAt: DateTime!
+  display: VisibilityCode!
+  type: CarrierCredentialTypeCode!
+  validationPattern: String
+}
+
+enum VisibilityCode {
+  HIDE
+  OPTIONAL
+  REQUIRED
+}
+
+enum CarrierCredentialTypeCode {
+  ACCESS_LICENSE_NUMBER
+  ACCOUNT_NUMBER
+  API_KEY
+  API_PASSWORD
+  API_TOKEN
+  CUSTOMER_ID
+  METER_NUMBER
+  PAYMENT_COUNTRY_CODE
+  SENDER_LOCATION
+  SHIPPER_NUMBER
+  SITE_ID
+  USER_ID
+}
+
+enum DeliveryType {
+  CONSOLIDATED
+  COURIER
+  POSTAL
+}
+
+type ShippingProfileRateChart {
+  createdAt: DateTime!
+  dimensionalWeightFactor: Decimal!
+  fromCountryCode: CountryCode
+  locations: [ShippingRateLocation!]
+  mode: Mode!
+  rates: [ShippingRate!]!
+  shippingProfile: ShippingProfile!
+  updatedAt: DateTime!
+}
+
+type ShippingRateLocation {
+  administrativeAreaCode: String
+  countryCode: CountryCode
+  serviceLevelArea: ServiceLevelArea
+}
+
+type ServiceLevelArea {
+  administrativeAreaCodePattern: String
+  countryCodePattern: String
+  createdAt: DateTime!
+  mode: Mode!
+  postalCodePattern: String
+  serviceLevel: ServiceLevel!
+  updatedAt: DateTime!
+}
+
+union ShippingRate = ShippingRateAmount | ShippingRateWeight
+
+type ShippingRateAmount {
+  amount: Decimal!
+  calculationType: ShippingRateCalculation!
+  currencyCode: CurrencyCode!
+  maxUnit: Decimal
+  minUnit: Decimal
+  unit: CurrencyCode!
+}
+
+\\"\\"\\"Specify how the rate amount would be applied.\\"\\"\\"
+enum ShippingRateCalculation {
+  FIXED
+  PER_UNIT
+}
+
+type ShippingRateWeight {
+  amount: Decimal!
+  calculationType: ShippingRateCalculation!
+  currencyCode: CurrencyCode!
+  maxUnit: Decimal
+  minUnit: Decimal
+  unit: WeightUnitCode!
+}
+
+enum LandedCostTariffRate {
+  EXACT
+  MAXIMUM
+  MEDIAN
+  MINIMUM
+  ZONOS_PREFERRED
+}
+
+type Tax {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  description: String
+  exchangeRate: ExchangeRate
+  item: Item
+  note: String
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+type TaxId {
+  allowLowValueOrders: Boolean
+  countryCode: CountryCode!
+  createdAt: DateTime
+  createdBy: DateTime
+  effectiveAt: DateTime
+  expiresAt: DateTime
+  id: ID
+  method: TaxMethodType!
+  mode: Mode
+  organization: ID
+  sendEmails: Boolean
+  type: TaxIdType!
+  updatedAt: DateTime
+  updatedBy: ID
+}
+
+enum TaxMethodType {
+  CONSIGNMENT
+  DEFAULT
+}
+
+enum TaxIdType {
+  CNP
+  DAN
+  DTF
+  DUN
+  EIN
+  EORI
+  FED
+  FTZ
+  GST
+  HMRC
+  IOSS
+  LVG
+  OSR
+  SSN
+  STA
+  TAN
+  VOEC
+}
+
+type Order {
+  accountOrderNumber: String
+  amountSubtotals: AmountSubtotals!
+  cartons: [Carton!]
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  items: [Item!]
+  landedCosts: [LandedCost!]
+  mode: Mode!
+  references: [OrderReference!]
+  remittance: [Remittance]
+  root: Root
+  shipmentRatings: [ShipmentRating!]
+  trackingNumbers: [String]
+  updatedAt: DateTime!
+}
+
+type AmountSubtotals {
+  duties: Decimal!
+  fees: Decimal!
+  items: Decimal!
+  shipping: Decimal!
+  taxes: Decimal!
+  variance: Decimal!
+}
+
+type OrderReference {
+  key: String
+  value: String
+}
+
+type Remittance {
+  amount: Decimal!
+}"
+`;
+
+exports[`extractSchemaCHunk big query (root internal) > should return new schema with required fields only 1`] = `
+"type Query {
+  root(id: ID!): Root
+}
+
+type Root {
+  cartons: [Carton]
+  id: ID!
+  exchangeRates: [ExchangeRate!]!
+  items: [Item]
+  restrictedItems: [RestrictedItem]
+  landedCosts: [LandedCost]
+  order: Order
+  parties: [Party]
+  createdAt: DateTime!
+  createdBy: ID!
+  mode: Mode!
+  organization: ID!
+  updatedAt: DateTime!
+  updatedBy: ID!
+  appliedRules: [AppliedRule]
+  shipmentRatings: [ShipmentRating]
+}
+
+type Carton {
+  amountInsured: Decimal
+  createdAt: DateTime!
+  createdBy: ID!
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  id: ID!
+  items: [CartonItem!]
+  length: Decimal!
+  mode: Mode!
+  organization: ID!
+  packagingOption: PackagingOption
+  rootId: ID!
+  shipFrom: Location
+  shipTo: Location
+  type: PackagingType!
+  updatedAt: DateTime!
+  updatedBy: ID!
+  weight: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+scalar Decimal
+
+scalar DateTime
+
+enum DimensionalUnitCode {
+  CENTIMETER
+  DECIMETER
+  FOOT
+  INCH
+  METER
+  MILLIMETER
+  YARD
+}
+
+type CartonItem {
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  item: Item!
+  length: Decimal!
+  quantity: Int!
+  type: PackagingType!
+  weight: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+type Item {
+  id: ID!
+  customsSpecs: [CustomsSpec!]!
+  amount: Decimal!
+  attributes: [ItemAttribute]
+  catalogItem: CatalogItem
+  countryOfOrigin: CountryCode
+  countryOfOriginSource: ItemValueSource
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode!
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  hsCodeSource: ItemValueSource
+  itemType: ItemType
+  measurements: [ItemMeasurement]
+  metadata: [ItemMetadata]
+  mode: Mode!
+  organization: ID!
+  productId: String!
+  quantity: Int!
+  restriction: RestrictedItem
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type CustomsSpec implements Node {
+  amountSubtotals: CustomsSpecAmountSubtotals!
+  attributes: [CustomsSpecAttribute!]
+  cartons: [Carton!]
+  clearanceType: ClearanceType
+  createdAt: DateTime!
+  currencyCode: CurrencyCode!
+  customsItems: [CustomsItem!]
+  id: ID!
+  incoterm: IncotermCode!
+  metadata: [CustomsMetadata!]
+  mode: Mode!
+  organization: ID!
+  parties: [Party!]
+  reasonForExport: LandedCostEndUse!
+  updatedAt: DateTime!
+}
+
+interface Node {
+  id: ID!
+}
+
+type CustomsSpecAmountSubtotals {
+  duties: Decimal
+  fees: Decimal
+  insurance: Decimal
+  items: Decimal
+  shipping: Decimal
+  taxes: Decimal
+}
+
+type CustomsSpecAttribute {
+  source: CustomsSpecSourceType!
+  sourceId: String!
+  type: CustomsSpecAttributeType!
+  value: String!
+}
+
+enum CustomsSpecSourceType {
+  API_REQUEST
+  CATALOG
+  CLASSIFY
+  ORGANIZATION_SETTING
+}
+
+enum CustomsSpecAttributeType {
+  ACCOUNT_NUMBER
+  B13A
+  ECCN
+  EORI
+  ITN
+  ORDER_NUMBER
+  PURCHASE_ORDER_NUMBER
+}
+
+enum ClearanceType {
+  COMMERCIAL
+  POSTAL
+}
+
+enum CurrencyCode {
+  __ISO_CURRENCY_CODE__
+}
+
+type CustomsItem {
+  amount: Decimal!
+  countryOfOrigin: CountryCode!
+  countryOfOriginSource: ItemValueSource!
+  description: String!
+  hsCode: String!
+  hsCodeSource: ItemValueSource!
+  items: [Item!]!
+  provinceOfOriginSource: ItemValueSource
+  quantity: Decimal!
+}
+
+enum CountryCode {
+  __ISO_COUNTRY_CODE__
+}
+
+enum ItemValueSource {
+  API_REQUEST
+  CATALOG
+  ORGANIZATION_SETTING
+}
+
+\\"\\"\\"International Commercial Terms\\"\\"\\"
+enum IncotermCode {
+  CIF
+  CUSTOM
+  DAP
+  DDP
+  FOB
+}
+
+type CustomsMetadata {
+  key: String!
+}
+
+enum Mode {
+  LIVE
+  TEST
+}
+
+type Party {
+  id: ID!
+  createdAt: DateTime!
+  createdBy: ID!
+  location: Location
+  mode: Mode!
+  organization: ID!
+  person: Person
+  type: PartyType
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type Location {
+  id: ID!
+  countryCode: CountryCode!
+  createdAt: DateTime!
+  createdBy: ID!
+  latitude: Decimal
+  longitude: Decimal
+  metadata: [PartyMetadata]
+  mode: Mode!
+  organization: ID!
+  propertyType: PropertyType
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type PartyMetadata {
+  key: String!
+}
+
+enum PropertyType {
+  COMMERCIAL
+  RESIDENTIAL
+}
+
+type Person {
+  createdAt: DateTime!
+  createdBy: ID!
+  id: ID!
+  metadata: [PartyMetadata]
+  mode: Mode!
+  organization: ID!
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum PartyType {
+  DESTINATION
+  ORIGIN
+  PAYEE
+  PAYOR
+}
+
+enum LandedCostEndUse {
+  FOR_RESALE
+  NOT_FOR_RESALE
+}
+
+type ItemAttribute
+
+type CatalogItem {
+  amount: Decimal
+  attributes: [ItemAttribute]
+  configurations: [CatalogItemConfiguration]
+  countryOfOrigin: CountryCode
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  hsCodes: [CatalogItemHsCode]
+  id: ID!
+  itemType: ItemType
+  measurements: [ItemMeasurement]
+  metadata: [ItemMetadata]
+  organization: ID!
+  restrictedCountries: [CountryCode]
+  source: CatalogItemSource!
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type CatalogItemConfiguration {
+  amount: Decimal
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode
+  dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+  shipToCountry: CountryCode
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum DutyTaxFeeConfiguration {
+  EXCLUDE_ALL
+  EXCLUDE_DUTY
+  EXCLUDE_FEE
+  EXCLUDE_TAX
+  INCLUDE_ALL
+  INCLUDE_TAX
+}
+
+type CatalogItemHsCode {
+  createdAt: DateTime!
+  createdBy: ID!
+  shipToCountry: CountryCode
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum ItemType {
+  DIGITAL_GOOD
+  PHYSICAL_GOOD
+  SERVICE
+  SUBSCRIPTION
+}
+
+type ItemMeasurement {
+  source: ItemValueSource!
+  type: ItemMeasurementType!
+  unitOfMeasure: ItemUnitOfMeasure!
+  value: Decimal!
+}
+
+enum ItemMeasurementType {
+  HEIGHT
+  LENGTH
+  WEIGHT
+  WIDTH
+}
+
+enum ItemUnitOfMeasure {
+  CENTIMETER
+  FOOT
+  GRAM
+  INCH
+  KILOGRAM
+  METER
+  MILLIMETER
+  OUNCE
+  POUND
+  YARD
+}
+
+type ItemMetadata
+
+enum CatalogItemSource {
+  CLASSIFICATION
+  LEGACY_MIGRATION
+  USER_PROVIDED
+}
+
+type RestrictedItem {
+  catalogItem: CatalogItem
+  id: ID!
+  item: Item!
+  itemRestrictions: ItemRestrictionsResult
+  reason: String!
+  rule: Rule
+}
+
+type ItemRestrictionsResult {
+  id: ID!
+}
+
+type Rule {
+  id: ID!
+  action: String!
+  condition: String!
+  context: String!
+  createdAt: DateTime!
+  createdBy: ID!
+  description: String!
+  endsAt: DateTime
+  mode: Mode!
+  name: String!
+  organization: ID!
+  startsAt: DateTime
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum PackagingType {
+  ENVELOPE
+  FLAT
+  PACKAGE
+  PAK
+  PARCEL
+  POLYBAG
+  TUBE
+}
+
+enum WeightUnitCode {
+  GRAM
+  KILOGRAM
+  OUNCE
+  POUND
+}
+
+type PackagingOption {
+  createdAt: DateTime!
+  createdBy: ID!
+  dimensionalUnit: DimensionalUnitCode!
+  height: Decimal!
+  id: ID!
+  length: Decimal!
+  mode: Mode!
+  name: String!
+  organization: ID!
+  source: PackagingOptionSource!
+  type: PackagingType!
+  updatedAt: DateTime!
+  updatedBy: ID!
+  weightCapacity: Decimal!
+  weightUnit: WeightUnitCode!
+  width: Decimal!
+}
+
+enum PackagingOptionSource {
+  DYNAMIC
+  ORGANIZATION
+}
+
+type ExchangeRate {
+  createdAt: DateTime!
+  createdBy: ID!
+  expiresAt: DateTime!
+  id: ID!
+  mode: Mode!
+  rate: Decimal!
+  sourceCurrencyCode: CurrencyCode!
+  targetCurrencyCode: CurrencyCode!
+  targetFormat: CurrencyFormat
+  type: ExchangeRateType!
+}
+
+type CurrencyFormat {
+  currencyCode: CurrencyCode!
+  decimalDelimiter: String!
+  scale: Int!
+  symbol: String!
+  symbolLocation: CurrencySymbolLocation
+  thousandsDelimiter: String!
+}
+
+enum CurrencySymbolLocation {
+  AFTER
+  BEFORE
+}
+
+enum ExchangeRateType {
+  MID_MARKET
+}
+
+type LandedCost {
+  amountSubtotals: LandedCostAmountSubtotals
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode!
+  deMinimis: [DeMinimis!]!
+  duties: [Duty!]!
+  endUse: LandedCostEndUse!
+  fees: [Fee!]!
+  id: ID!
+  landedCostGuaranteeCode: LandedCostGuaranteeCode!
+  method: IncotermCode!
+  mode: Mode!
+  organization: ID!
+  remittance: [LandedCostRemittance!]!
+
+  \\"\\"\\"\`Root\` resource that this \`LandedCost\` belongs to\\"\\"\\"
+  root: Root
+  rootId: ID!
+  shipmentRating: ShipmentRating!
+  tariffRate: LandedCostTariffRate!
+  taxes: [Tax!]!
+  updatedAt: DateTime!
+  updatedBy: ID!
+  taxId: TaxId
+}
+
+type LandedCostAmountSubtotals {
+  duties: Decimal!
+  fees: Decimal!
+  items: Decimal!
+  landedCostTotal: Decimal!
+  shipping: Decimal!
+  taxes: Decimal!
+}
+
+type DeMinimis {
+  formula: String!
+  method: IncotermCode!
+  note: String!
+  threshold: DeMinimisThreshold!
+  type: DeMinimisType!
+}
+
+enum DeMinimisThreshold {
+  ABOVE
+  BELOW
+}
+
+enum DeMinimisType {
+  DUTY
+  FEE
+  TAX
+}
+
+type Duty {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  exchangeRate: ExchangeRate
+  formula: String!
+  item: Item
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+enum LandedCostFeeType {
+  ADDITIONAL_TARIFF_LINES
+  ADVANCEMENT
+  BROKERAGE_FEE
+  COD
+  COUNTRY
+  CURRENCY_CONVERSION_FEE
+  DDP_SERVICE_FEE
+  DUTY
+  ITEM
+  OTHER
+  SHIPPING
+  ZONOS_LANDED_COST_GUARANTEE
+}
+
+type Fee {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  exchangeRate: ExchangeRate
+  formula: String!
+  item: Item
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+enum LandedCostGuaranteeCode {
+  NOT_APPLICABLE
+  ZONOS
+}
+
+type LandedCostRemittance {
+  amount: Decimal!
+  description: String!
+  note: String!
+}
+
+type ShipmentRating {
+  id: ID!
+  appliedRules: [AppliedRule]
+  amount: Decimal!
+  amountSubtotals: ShipmentRatingSubtotals!
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode!
+  details: [ShipmentRatingDetail!]
+  displayName: String!
+  maxTransitAt: DateTime
+  minTransitAt: DateTime
+  multipleShipFromRatings: [ShipmentRating]
+  organization: ID!
+  serviceLevelCode: String!
+  shipFrom: Location
+  shipTo: Location
+  shipmentRatingCartons: [ShipmentRatingCarton!]!
+  shippingProfile: ShippingProfile
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type AppliedRule {
+  after: String!
+  before: String!
+  createdAt: DateTime!
+  id: ID!
+  organization: ID!
+  rule: Rule!
+}
+
+type ShipmentRatingSubtotals {
+  fuelSurcharge: Decimal
+  insuranceCost: Decimal
+  otherSurcharge: Decimal
+  shipping: Decimal!
+}
+
+type ShipmentRatingDetail {
+  amount: Decimal!
+  carrierCode: String!
+  type: ShipmentAmountType!
+}
+
+enum ShipmentAmountType {
+  BUFFER
+  DISCOUNT
+  FUEL_SURCHARGE
+  INSURANCE
+  PUBLISHED_RATE
+  SURCHARGE
+}
+
+type ShipmentRatingCarton {
+  amountInsured: Decimal!
+  carton: Carton!
+  chargeableWeight: Decimal
+  dimensionalWeight: Decimal
+}
+
+type ShippingProfile {
+  createdAt: DateTime!
+  createdBy: ID!
+  id: ID!
+  landedCostMethod: LandedCostMethod
+  mode: Mode!
+  name: String!
+  organization: ID!
+  serviceLevel: ServiceLevel!
+  shippingPercentIncrease: Decimal
+  shippingRates: [ShippingProfileRateChart!]
+  shippingValueIncrease: Decimal
+  transitTime: TransitTime
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+\\"\\"\\"The method to use for the landed cost calculation.\\"\\"\\"
+enum LandedCostMethod {
+  DAP_FORCED
+  DDP_AND_DAP
+  DDP_FORCED
+  DDP_PREFERRED
+}
+
+type ServiceLevel {
+  id: ID!
+  parties: [Party]
+  availability: ServiceLevelAvailability!
+  carrier: Carrier!
+  carrierApiCode: String!
+  code: String!
+  countryConstraints: [CountryConstraint!]
+  createdAt: DateTime!
+  createdBy: ID!
+  deliveryType: DeliveryType
+  name: String!
+  transitTime: TransitTime
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum ServiceLevelAvailability {
+  CONTRACTED
+  DISABLED
+  GENERAL
+}
+
+type Carrier {
+  id: ID!
+  parties: [Party]
+  code: String!
+  countryConstraints: [CountryConstraint!]
+  createdAt: DateTime!
+  createdBy: ID!
+  credentials: [CarrierCredential!]
+  name: String!
+  serviceLevels: [ServiceLevel!]
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type CountryConstraint {
+  constraints: [Constraint]
+  createdAt: DateTime!
+  createdBy: ID!
+  dutyTaxBilling: BillingOptionCode
+  id: ID!
+  incoterm: [IncotermCode!]
+  shipFromCountryCodes: [CountryCode!]!
+  shipToCountryCodes: [CountryCode!]!
+  transitTime: TransitTime
+  updatedAt: DateTime!
+  updatedBy: ID!
+  weightUnit: WeightUnitCode
+}
+
+type Constraint {
+  createdAt: DateTime!
+  createdBy: ID!
+  id: ID!
+  max: Decimal
+  min: Decimal
+  type: ConstraintType!
+  unitOfMeasure: ConstraintUnitCode!
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+enum ConstraintType {
+  GIRTH
+  GIRTH_AND_LENGTH
+  HEIGHT
+  LENGTH
+  PRICE
+  QUANTITY
+  VOLUME
+  WEIGHT
+  WIDTH
+}
+
+enum ConstraintUnitCode {
+  __ISO_COUNTRY_CODE__
+  BARREL_PETROLEUM
+  BUSHEL_UK
+  BUSHEL_US_DRY
+  CARAT
+  CENTIGRAM
+  CENTILITER_CL
+  CENTIMETER
+  CUBIC_CENTIMETER
+  CUBIC_DECIMETER
+  CUBIC_FOOT
+  CUBIC_INCH
+  CUBIC_METER
+  CUBIC_MILLIMETER
+  CUBIC_YARD
+  DECALITER_DAL
+  DECILITER
+  DECIMETER
+  FLUID_DRAM_FL_DR
+  FLUID_OUNCE_FL_OZ
+  FLUID_OUNCE_UK
+  FOOT
+  GALLON_FLUID
+  GALLON_UK
+  GILL_GI
+  GRAM
+  HECTOLITER
+  INCH
+  KILOGRAM
+  KILOLITER
+  LITER
+  METER
+  MICROLITER
+  MILLIGRAM
+  MILLILITER_ML
+  MILLIMETER
+  MINIM_MIN
+  OUNCE
+  PECK_US_DRY
+  PINT_FLUID
+  PINT_UK
+  PINT_US_DRY
+  POUND
+  QUART_FLUID
+  QUART_UK
+  QUART_US_DRY
+  YARD
+}
+
+enum BillingOptionCode {
+  DDP_AND_DDU
+  SHIPPER_ONLY
+  THIRD_PARTY
+  UNAVAILABLE
+}
+
+type TransitTime {
+  guaranteedDelivery: DateTime
+  type: TransitTypeCode
+}
+
+enum TransitTypeCode {
+  BUSINESS_DAYS
+  DAYS
+  WEEKS
+}
+
+type CarrierCredential {
+  createdAt: DateTime!
+  createdBy: ID!
+  display: VisibilityCode!
+  id: ID!
+  label: String!
+  sequence: Int!
+  type: CarrierCredentialTypeCode!
+}
+
+enum VisibilityCode {
+  HIDE
+  OPTIONAL
+  REQUIRED
+}
+
+enum CarrierCredentialTypeCode {
+  ACCESS_LICENSE_NUMBER
+  ACCOUNT_NUMBER
+  API_KEY
+  API_PASSWORD
+  API_TOKEN
+  CUSTOMER_ID
+  METER_NUMBER
+  PAYMENT_COUNTRY_CODE
+  SENDER_LOCATION
+  SHIPPER_NUMBER
+  SITE_ID
+  USER_ID
+}
+
+enum DeliveryType {
+  CONSOLIDATED
+  COURIER
+  POSTAL
+}
+
+type ShippingProfileRateChart {
+  createdAt: DateTime!
+  createdBy: ID!
+  dimensionalWeightFactor: Decimal!
+  fromCountryCode: CountryCode
+  id: ID!
+  locations: [ShippingRateLocation!]
+  mode: Mode!
+  rates: [ShippingRate!]!
+  shippingProfile: ShippingProfile!
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type ShippingRateLocation {
+  countryCode: CountryCode
+  serviceLevelArea: ServiceLevelArea
+}
+
+type ServiceLevelArea {
+  createdAt: DateTime!
+  createdBy: ID!
+  id: ID!
+  mode: Mode!
+  name: String!
+  serviceLevel: ServiceLevel!
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+union ShippingRate = ShippingRateAmount | ShippingRateWeight
+
+type ShippingRateAmount {
+  amount: Decimal!
+  calculationType: ShippingRateCalculation!
+  currencyCode: CurrencyCode!
+  maxUnit: Decimal
+  minUnit: Decimal
+  unit: CurrencyCode!
+}
+
+\\"\\"\\"Specify how the rate amount would be applied.\\"\\"\\"
+enum ShippingRateCalculation {
+  FIXED
+  PER_UNIT
+}
+
+type ShippingRateWeight {
+  amount: Decimal!
+  calculationType: ShippingRateCalculation!
+  currencyCode: CurrencyCode!
+  maxUnit: Decimal
+  minUnit: Decimal
+  unit: WeightUnitCode!
+}
+
+enum LandedCostTariffRate {
+  EXACT
+  MAXIMUM
+  MEDIAN
+  MINIMUM
+  ZONOS_PREFERRED
+}
+
+type Tax {
+  amount: Decimal!
+  currencyCode: CurrencyCode!
+  exchangeRate: ExchangeRate
+  formula: String!
+  item: Item
+  payee: Party
+  payor: Party
+  type: LandedCostFeeType!
+}
+
+type TaxId {
+  countryCode: CountryCode!
+  createdAt: DateTime
+  createdBy: DateTime
+  effectiveAt: DateTime
+  expiresAt: DateTime
+  method: TaxMethodType!
+  mode: Mode
+  taxIdNumber: String!
+  type: TaxIdType!
+  updatedAt: DateTime
+}
+
+enum TaxMethodType {
+  CONSIGNMENT
+  DEFAULT
+}
+
+enum TaxIdType {
+  CNP
+  DAN
+  DTF
+  DUN
+  EIN
+  EORI
+  FED
+  FTZ
+  GST
+  HMRC
+  IOSS
+  LVG
+  OSR
+  SSN
+  STA
+  TAN
+  VOEC
+}
+
+type Order {
+  amountSubtotals: AmountSubtotals!
+  cartons: [Carton!]
+  createdAt: DateTime!
+  createdBy: ID!
+  currencyCode: CurrencyCode!
+  id: ID!
+  items: [Item!]
+  landedCosts: [LandedCost!]
+  mode: Mode!
+  organization: ID!
+  references: [OrderReference!]
+  remittance: [Remittance]
+  root: Root
+  shipmentRatings: [ShipmentRating!]
+  updatedAt: DateTime!
+  updatedBy: ID!
+}
+
+type AmountSubtotals {
+  duties: Decimal!
+  fees: Decimal!
+  items: Decimal!
+  shipping: Decimal!
+  taxes: Decimal!
+  variance: Decimal!
+}
+
+type OrderReference
+
+type Remittance {
+  amount: Decimal!
+  description: String!
+  note: String!
+}"
+`;

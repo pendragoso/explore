@@ -1,0 +1,43 @@
+Title: Legacy Login Mutation Schema
+Mutation details:
+- loginLegacy(input: UserLoginLegacyInput): CredentialSession
+  - input: UserLoginLegacyInput - Input object for legacy login.
+    - email: String - Deprecated field.
+    - storeId: Int! - Store ID for the login.
+    - userToken: String! - User token for the login.
+  - CredentialSession - Session object for the logged-in user.
+    - id: ID! - Unique identifier for the session.
+    - createdAt: DateTime! - Date and time when the session was created.
+    - validUntil: DateTime - Date and time when the session is valid until.
+    - credential: ID! - Credential ID associated with the session.
+    - organization: ID! - Organization ID associated with the session.
+    - serviceToken: String - Service token for the session.
+    - user: ID - User ID associated with the session.
+    - store: Int - Store ID associated with the session.
+    - permissions: [String!] - List of permission names for the session.
+    - mode: Mode! - Mode of the session (LIVE or TEST).Examples:
+```graphql
+mutation LoginLegacy($input: UserLoginLegacyInput) {
+  loginLegacy(input: $input) {
+    id
+    createdAt
+    validUntil
+    credential
+    organization
+    serviceToken
+    user
+    store
+    permissions
+    mode
+  }
+}
+```
+Variables:
+```json
+{
+  "input": {
+    "storeId": 123,
+    "userToken": "exampleUserToken"
+  }
+}
+```

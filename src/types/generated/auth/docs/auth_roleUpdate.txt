@@ -1,0 +1,48 @@
+Title: Role Management Schema
+Mutation details:
+- roleUpdate(input: RoleUpdateInput!): Role
+  - input: RoleUpdateInput! - Input object for updating a role.
+    - id: ID! - Unique identifier for the role to update.
+    - permissions: [String!]! - List of permissions for the role.
+    - name: String! - Name of the role.
+    - description: String - Description of the role.
+  - Role
+    - id: ID! - Unique identifier for the role.
+    - createdAt: DateTime! - Date and time when the role was created.
+    - createdBy: ID! - User ID who created the role.
+    - description: String - Description of the role.
+    - name: String! - Name of the role.
+    - slug: String! - A unique name for the role with no spaces.
+    - type: RoleType! - Type of the role (PUBLIC, INTERNAL, CUSTOM, SUBSCRIPTION, ORGANIZATIONAL).
+    - permissions: [String!]! - List of permissions for the role.
+    - organization: ID - Organization ID associated with the role.
+    - updatedAt: DateTime! - Date and time when the role was last updated.
+    - updatedBy: ID! - User ID who last updated the role.Example:
+```graphql
+mutation UpdateRole($input: RoleUpdateInput!) {
+  roleUpdate(input: $input) {
+    id
+    createdAt
+    createdBy
+    description
+    name
+    slug
+    type
+    permissions
+    organization
+    updatedAt
+    updatedBy
+  }
+}
+```
+Variables:
+```json
+{
+  "input": {
+    "id": "1",
+    "permissions": ["read", "write"],
+    "name": "New Role Name",
+    "description": "Updated role description"
+  }
+}
+```

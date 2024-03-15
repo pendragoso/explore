@@ -1,0 +1,46 @@
+Title: User Login and Credential Session Schema
+Mutation details:
+- login(input: UserLoginInput): CredentialSession
+  - input: UserLoginInput - Input object for user login.
+    - email: String! - Email address of the user.
+    - password: String! - Password of the user.
+    - mode: Mode! - Mode of the session (LIVE or TEST).
+    - organizationId: ID - Organization ID for the session.
+  - CredentialSession
+    - id: ID! - Unique identifier for the credential session.
+    - createdAt: DateTime! - Date and time when the session was created. An RFC-3339 compliant DateTime Scalar.
+    - validUntil: DateTime - Date and time when the session is valid until.
+    - credential: ID! - Credential ID associated with the session.
+    - organization: ID! - Organization ID associated with the session.
+    - serviceToken: String - Service token for the session.
+    - user: ID - User ID associated with the session.
+    - store: Int - Store ID associated with the session.
+    - permissions: [String!] - List of permission names associated with the session.
+    - mode: Mode! - Mode of the session (LIVE or TEST).Examples:
+```graphql
+mutation LoginUser($input: UserLoginInput) {
+  login(input: $input) {
+    id
+    createdAt
+    validUntil
+    credential
+    organization
+    serviceToken
+    user
+    store
+    permissions
+    mode
+  }
+}
+```
+Variables:
+```json
+{
+  "input": {
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "mode": "LIVE",
+    "organizationId": "1"
+  }
+}
+```

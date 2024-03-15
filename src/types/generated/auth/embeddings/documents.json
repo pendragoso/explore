@@ -1,0 +1,128 @@
+[
+  {
+    "metadata": { "fieldName": "permissions", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"permissions\" from schema \"Auth\":\ntype Query {\npermissions(first: Int = 10, after: String): PermissionConnection\n}\ntype PermissionConnection {\nedges: [PermissionEdge]\npageInfo: PageInfo\n}\ntype PermissionEdge {\ncursor: String\nnode: Permission\n}\ntype Permission {\nid: ID!\ncreatedAt: DateTime!\ndescription: String!\nname: String!\n}\nscalar DateTime\ntype PageInfo {\nhasPreviousPage: Boolean!\nhasNextPage: Boolean!\nstartCursor: String\nendCursor: String\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "getCredentialServiceToken",
+      "schemaType": "query"
+    },
+    "pageContent": "\nBelow is schema definition for query \"getCredentialServiceToken\" from schema \"Auth\":\ntype Query {\ngetCredentialServiceToken(input: CredentialServiceTokenQueryInput): CredentialServiceToken\n}\ntype CredentialServiceToken {\nid: ID\ncredential: Credential\norganization: String\nmode: Mode\nstoreId: Int\nserviceToken: String\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}\ninput CredentialServiceTokenQueryInput {\nstoreId: Int!\nmode: Mode!\n}"
+  },
+  {
+    "metadata": { "fieldName": "users", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"users\" from schema \"Auth\":\ntype Query {\nusers(first: Int = 10, after: String, filter: UserFilter): UserConnection\n}\ntype UserConnection {\nedges: [UserEdge]\npageInfo: PageInfo\n}\ntype UserEdge {\ncursor: String\nnode: User\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\ntype PageInfo {\nhasPreviousPage: Boolean!\nhasNextPage: Boolean!\nstartCursor: String\nendCursor: String\n}\ninput UserFilter {\nuserId: ID\nemail: String\nstatus: UserStatus\n}"
+  },
+  {
+    "metadata": { "fieldName": "user", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"user\" from schema \"Auth\":\ntype Query {\nuser(email: String): User\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}"
+  },
+  {
+    "metadata": { "fieldName": "roles", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"roles\" from schema \"Auth\":\ntype Query {\nroles(first: Int = 10, after: String, filter: RoleFilter): RoleConnection\n}\ntype RoleConnection {\nedges: [RoleEdge]\npageInfo: PageInfo\n}\ntype RoleEdge {\ncursor: String\nnode: Role\n}\ntype Role {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\ndescription: String\nname: String!\nslug: String!\ntype: RoleType!\npermissions: [String!]!\norganization: ID\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum RoleType {\nPUBLIC\nINTERNAL\nCUSTOM\nSUBSCRIPTION\nORGANIZATIONAL\n}\ntype PageInfo {\nhasPreviousPage: Boolean!\nhasNextPage: Boolean!\nstartCursor: String\nendCursor: String\n}\ninput RoleFilter {\nname: String\nslug: String\ntype: RoleType\n}"
+  },
+  {
+    "metadata": { "fieldName": "rolesGlobal", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"rolesGlobal\" from schema \"Auth\":\ntype Query {\nrolesGlobal(first: Int = 10, after: String, filter: RoleFilter): RoleConnection\n}\ntype RoleConnection {\nedges: [RoleEdge]\npageInfo: PageInfo\n}\ntype RoleEdge {\ncursor: String\nnode: Role\n}\ntype Role {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\ndescription: String\nname: String!\nslug: String!\ntype: RoleType!\npermissions: [String!]!\norganization: ID\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum RoleType {\nPUBLIC\nINTERNAL\nCUSTOM\nSUBSCRIPTION\nORGANIZATIONAL\n}\ntype PageInfo {\nhasPreviousPage: Boolean!\nhasNextPage: Boolean!\nstartCursor: String\nendCursor: String\n}\ninput RoleFilter {\nname: String\nslug: String\ntype: RoleType\n}"
+  },
+  {
+    "metadata": { "fieldName": "credential", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"credential\" from schema \"Auth\":\ntype Query {\ncredential(id: ID!): Credential\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}"
+  },
+  {
+    "metadata": { "fieldName": "credentials", "schemaType": "query" },
+    "pageContent": "\nBelow is schema definition for query \"credentials\" from schema \"Auth\":\ntype Query {\ncredentials(first: Int = 10, after: String, filter: CredentialFilter): CredentialConnection\n}\ntype CredentialConnection {\nedges: [CredentialEdge]\npageInfo: PageInfo\n}\ntype CredentialEdge {\ncursor: String\nnode: Credential\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}\ntype PageInfo {\nhasPreviousPage: Boolean!\nhasNextPage: Boolean!\nstartCursor: String\nendCursor: String\n}\ninput CredentialFilter {\ntype: CredentialType\nuser: ID\nexpiredAtBefore: DateTime\nexpiredAtAfter: DateTime\n}"
+  },
+  {
+    "metadata": { "fieldName": "userCreate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"userCreate\" from schema \"Auth\":\ntype Mutation {\nuserCreate(input: UserCreateInput!): User!\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\ninput UserCreateInput {\nemail: String!\npassword: String!\norganizationIds: [ID!]!\nmultiFactorAuthenticationPhone: String\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nonBoarding: Boolean = false\n}"
+  },
+  {
+    "metadata": { "fieldName": "userUpdate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"userUpdate\" from schema \"Auth\":\ntype Mutation {\nuserUpdate(input: UserUpdateInput!): User!\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\ninput UserUpdateInput {\nuserId: ID!\norganizationIds: [ID!]!\nstatus: UserStatus!\n}"
+  },
+  {
+    "metadata": { "fieldName": "userPasswordUpdate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"userPasswordUpdate\" from schema \"Auth\":\ntype Mutation {\n\"\"\" normal password reset.\"\"\"\nuserPasswordUpdate(email: String, currentPassword: String, newPassword: String): Result\n}\nenum Result {\nSUCCESS\nFAILURE\n}"
+  },
+  {
+    "metadata": { "fieldName": "login", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"login\" from schema \"Auth\":\ntype Mutation {\nlogin(input: UserLoginInput): CredentialSession\n}\ntype CredentialSession {\nid: ID!\ncreatedAt: DateTime!\nvalidUntil: DateTime\ncredential: ID!\norganization: ID!\nserviceToken: String\nuser: ID\nstore: Int\npermissions: [String!]\nmode: Mode!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ninput UserLoginInput {\nemail: String!\npassword: String!\nmode: Mode!\norganizationId: ID\n}"
+  },
+  {
+    "metadata": { "fieldName": "loginLegacy", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"loginLegacy\" from schema \"Auth\":\ntype Mutation {\nloginLegacy(input: UserLoginLegacyInput): CredentialSession\n}\ntype CredentialSession {\nid: ID!\ncreatedAt: DateTime!\nvalidUntil: DateTime\ncredential: ID!\norganization: ID!\nserviceToken: String\nuser: ID\nstore: Int\npermissions: [String!]\nmode: Mode!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ninput UserLoginLegacyInput {\nstoreId: Int!\nuserToken: String!\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "migrateCredentialServiceToken",
+      "schemaType": "mutation"
+    },
+    "pageContent": "\nBelow is schema definition for mutation \"migrateCredentialServiceToken\" from schema \"Auth\":\ntype Mutation {\nmigrateCredentialServiceToken(input: MigrateCredentialServiceTokenInput): Result! @deprecated\n}\nenum Result {\nSUCCESS\nFAILURE\n}\ninput MigrateCredentialServiceTokenInput {\nstoreId: Int!\nemail: String\norganizationName: String!\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "credentialServiceTokenCreate",
+      "schemaType": "mutation"
+    },
+    "pageContent": "\nBelow is schema definition for mutation \"credentialServiceTokenCreate\" from schema \"Auth\":\ntype Mutation {\n\"\"\"\nCreate a link between one or more api token credentials and the organization service token.\n\"\"\"\ncredentialServiceTokenCreate(input: CredentialServiceTokenCreateInput!): [CredentialServiceToken!]!\n}\ntype CredentialServiceToken {\nid: ID\ncredential: Credential\norganization: String\nmode: Mode\nstoreId: Int\nserviceToken: String\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}\ninput CredentialServiceTokenCreateInput {\nstoreId: Int!\n}"
+  },
+  {
+    "metadata": { "fieldName": "roleCreate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"roleCreate\" from schema \"Auth\":\ntype Mutation {\nroleCreate(input: RoleCreateInput!): Role\n}\ntype Role {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\ndescription: String\nname: String!\nslug: String!\ntype: RoleType!\npermissions: [String!]!\norganization: ID\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum RoleType {\nPUBLIC\nINTERNAL\nCUSTOM\nSUBSCRIPTION\nORGANIZATIONAL\n}\ninput RoleCreateInput {\npermissions: [String!]!\nname: String!\nslug: String!\ndescription: String\n}"
+  },
+  {
+    "metadata": { "fieldName": "roleUpdate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"roleUpdate\" from schema \"Auth\":\ntype Mutation {\nroleUpdate(input: RoleUpdateInput!): Role\n}\ntype Role {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\ndescription: String\nname: String!\nslug: String!\ntype: RoleType!\npermissions: [String!]!\norganization: ID\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum RoleType {\nPUBLIC\nINTERNAL\nCUSTOM\nSUBSCRIPTION\nORGANIZATIONAL\n}\ninput RoleUpdateInput {\nid: ID!\npermissions: [String!]!\nname: String!\ndescription: String\n}"
+  },
+  {
+    "metadata": { "fieldName": "roleDelete", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"roleDelete\" from schema \"Auth\":\ntype Mutation {\nroleDelete(id: String): Result\n}\nenum Result {\nSUCCESS\nFAILURE\n}"
+  },
+  {
+    "metadata": { "fieldName": "roleGlobalCreate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"roleGlobalCreate\" from schema \"Auth\":\ntype Mutation {\nroleGlobalCreate(input: RoleGlobalCreateInput): Role\n}\ntype Role {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\ndescription: String\nname: String!\nslug: String!\ntype: RoleType!\npermissions: [String!]!\norganization: ID\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum RoleType {\nPUBLIC\nINTERNAL\nCUSTOM\nSUBSCRIPTION\nORGANIZATIONAL\n}\ninput RoleGlobalCreateInput {\npermissions: [String!]!\nname: String!\nslug: String!\ndescription: String\ntype: RoleType!\n}"
+  },
+  {
+    "metadata": { "fieldName": "roleValidateSlug", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"roleValidateSlug\" from schema \"Auth\":\ntype Mutation {\nroleValidateSlug(input: String!): Boolean\n}"
+  },
+  {
+    "metadata": { "fieldName": "createCredential", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"createCredential\" from schema \"Auth\":\ntype Mutation {\ncreateCredential(createCredentialInput: CreateCredentialInput!): Credential!\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}\ninput CreateCredentialInput {\nname: String\nmode: Mode!\norganization: String!\nexpiredAt: DateTime\nroles: [String!]\nassignableRoles: [String]\ntype: CredentialType!\nuser: String\n}"
+  },
+  {
+    "metadata": { "fieldName": "credentialUpdate", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"credentialUpdate\" from schema \"Auth\":\ntype Mutation {\ncredentialUpdate(input: CredentialUpdateInput!): Credential!\n}\ntype Credential {\nid: ID!\ncreatedAt: DateTime!\ncreatedBy: ID!\nexpiredAt: String\nlastUsedAt: String\nmode: Mode!\nname: String\norganization: ID!\nuser: User\nmultiFactorAuthenticated: MultiFactorAuthenticated\nroles: [ID!]\nassignableRoles: [ID]\ntype: CredentialType\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ntype User {\nid: String!\ncreatedAt: DateTime!\ncreatedBy: ID!\nemail: String!\nlastLoginAt: DateTime\nmultiFactorAuthentication: MultiFactorAuthenticationMode\nmultiFactorAuthenticationPhone: String\norganizations: [ID!]!\nstatus: UserStatus\nupdatedAt: DateTime!\nupdatedBy: ID!\n}\nenum MultiFactorAuthenticationMode {\nSMS\nSMS_NOT_VERIFIED\nEMAIL\nEMAIL_NOT_VERIFIED\nNOT_VERIFIED\n}\nenum UserStatus {\nACTIVE\nDISABLED\n}\nenum MultiFactorAuthenticated {\nIN_PROGRESS\nVERIFIED\nNOT_VERIFIED\n}\nenum CredentialType {\nAPI_TOKEN\nUSER_TOKEN\nHELLO_TOKEN\nSERVICE_TOKEN\n}\ninput CredentialUpdateInput {\nid: ID!\nname: String\nexpiredAt: DateTime\nroles: [String!]\nassignableRoles: [String]\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "updateCredentialSessionContext",
+      "schemaType": "mutation"
+    },
+    "pageContent": "\nBelow is schema definition for mutation \"updateCredentialSessionContext\" from schema \"Auth\":\ntype Mutation {\nupdateCredentialSessionContext(updateCredentialSessionInput: UpdateCredentialSessionInput!): CredentialSession!\n}\ntype CredentialSession {\nid: ID!\ncreatedAt: DateTime!\nvalidUntil: DateTime\ncredential: ID!\norganization: ID!\nserviceToken: String\nuser: ID\nstore: Int\npermissions: [String!]\nmode: Mode!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}\ninput UpdateCredentialSessionInput {\norganization: String\n}"
+  },
+  {
+    "metadata": { "fieldName": "validateCredential", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"validateCredential\" from schema \"Auth\":\ntype Mutation {\nvalidateCredential: CredentialSession\n}\ntype CredentialSession {\nid: ID!\ncreatedAt: DateTime!\nvalidUntil: DateTime\ncredential: ID!\norganization: ID!\nserviceToken: String\nuser: ID\nstore: Int\npermissions: [String!]\nmode: Mode!\n}\nscalar DateTime\nenum Mode {\nLIVE\nTEST\n}"
+  },
+  {
+    "metadata": { "fieldName": "deleteCredential", "schemaType": "mutation" },
+    "pageContent": "\nBelow is schema definition for mutation \"deleteCredential\" from schema \"Auth\":\ntype Mutation {\ndeleteCredential(id: ID!): Result\n}\nenum Result {\nSUCCESS\nFAILURE\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "credentialAddSubscriptionRoles",
+      "schemaType": "mutation"
+    },
+    "pageContent": "\nBelow is schema definition for mutation \"credentialAddSubscriptionRoles\" from schema \"Auth\":\ntype Mutation {\n\"\"\"\nWhen a subscription is created/turned on, we will assign all the given roles via this operation call, for all the respective organizations admin users as assignable roles\n\"\"\"\ncredentialAddSubscriptionRoles(organizationIds: [ID!]!, roles: [ID!]!): Result\n}\nenum Result {\nSUCCESS\nFAILURE\n}"
+  },
+  {
+    "metadata": {
+      "fieldName": "credentialRemoveSubscriptionRoles",
+      "schemaType": "mutation"
+    },
+    "pageContent": "\nBelow is schema definition for mutation \"credentialRemoveSubscriptionRoles\" from schema \"Auth\":\ntype Mutation {\n\"\"\"\nWhen a subscription is no longer valid, we will remove all the given roles via this operation call, for all the respective organizations credentials\n\"\"\"\ncredentialRemoveSubscriptionRoles(organizationIds: [ID!]!, roles: [ID!]!): Result\n}\nenum Result {\nSUCCESS\nFAILURE\n}"
+  }
+]

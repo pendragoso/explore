@@ -1,0 +1,20 @@
+Title: Role Deletion Schema
+Mutation details:
+- roleDelete(id: String): Result
+  - id: String - Unique identifier of the role to be deleted.
+  - Result - Enum representing the result of the deletion operation.
+    - SUCCESS - Indicates that the role was successfully deleted.
+    - FAILURE - Indicates that the role deletion failed.Example:
+```graphql
+mutation DeleteRole($id: String) {
+  roleDelete(id: $id) {
+    result
+  }
+}
+```
+Variables:
+```json
+{
+  "id": "123"
+}
+```

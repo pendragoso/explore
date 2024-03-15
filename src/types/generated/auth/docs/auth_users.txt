@@ -1,0 +1,69 @@
+Title: User Query Schema
+Query details:
+- users(first: Int = 10, after: String, filter: UserFilter): UserConnection
+  - first: Int - Number of users to fetch, default is 10.
+  - after: String - Cursor for pagination.
+  - filter: UserFilter - Filter users based on certain criteria.
+    - userId: ID - Filter by user ID.
+    - email: String - Filter by email address.
+    - status: UserStatus - Filter by user status (ACTIVE, DISABLED).
+  - UserConnection - Connection object for paginated users.
+    - edges: [UserEdge] - List of user edges.
+      - cursor: String - Cursor for pagination.
+      - node: User - User node.
+        - id: String! - Unique identifier for the user.
+        - createdAt: DateTime! - Date and time when the user was created.
+        - createdBy: ID! - User ID who created the user.
+        - email: String! - Email address of the user.
+        - lastLoginAt: DateTime - Date and time when the user last logged in.
+        - multiFactorAuthentication: MultiFactorAuthenticationMode - Multi-factor authentication mode for the user (SMS, SMS_NOT_VERIFIED, EMAIL, EMAIL_NOT_VERIFIED, NOT_VERIFIED).
+        - multiFactorAuthenticationPhone: String - Phone number used for multi-factor authentication.
+        - organizations: [ID!]! - List of organization IDs associated with the user.
+        - status: UserStatus - Status of the user (ACTIVE, DISABLED).
+        - updatedAt: DateTime! - Date and time when the user was last updated.
+        - updatedBy: ID! - User ID who last updated the user.
+    - pageInfo: PageInfo - Pagination information.
+      - hasPreviousPage: Boolean! - Indicates if there is a previous page.
+      - hasNextPage: Boolean! - Indicates if there is a next page.
+      - startCursor: String - Start cursor for pagination.
+      - endCursor: String - End cursor for pagination.Examples:
+```graphql
+query GetUsers($first: Int, $after: String, $filter: UserFilter) {
+  users(first: $first, after: $after, filter: $filter) {
+    edges {
+      cursor
+      node {
+        id
+        createdAt
+        createdBy
+        email
+        lastLoginAt
+        multiFactorAuthentication
+        multiFactorAuthenticationPhone
+        organizations
+        status
+        updatedAt
+        updatedBy
+      }
+    }
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+  }
+}
+```
+Variables:
+```json
+{
+  "first": 5,
+  "after": null,
+  "filter": {
+    "userId": "123",
+    "email": "john.doe@example.com",
+    "status": "ACTIVE"
+  }
+}
+```

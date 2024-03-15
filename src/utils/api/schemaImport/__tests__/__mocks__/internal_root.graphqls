@@ -1,0 +1,2373 @@
+type Query {
+root(id: ID!): Root
+}
+"""
+A `Root` serves as a wrapper for various resources, such as `LandedCost` and `ShipmentRating`
+"""
+type Root {
+cartons: [Carton]
+"""`Root` ID, prefixed with `root_`."""
+id: ID!
+exchangeRates: [ExchangeRate!]!
+items: [Item]
+restrictedItems: [RestrictedItem]
+landedCosts: [LandedCost]
+"""The `Order` placed between the root `parties`."""
+order: Order
+parties: [Party]
+"""When this `Root` was created"""
+createdAt: DateTime!
+"""`User` who created this `Root`"""
+createdBy: ID!
+"""Whether this `Root` was created in live or test mode"""
+mode: Mode!
+organization: ID!
+"""`Organization` that this `Root` belongs to"""
+organizationId: ID! @deprecated(reason: "Use `organization` instead")
+"""When this `Root` was most recently updated"""
+updatedAt: DateTime!
+"""`User` who most recently updated this `Root`"""
+updatedBy: ID!
+appliedRules: [AppliedRule]
+shipmentRatings: [ShipmentRating]
+}
+""" An order receipt page might want to list all of the cartons in an order.
+"""
+type Carton {
+"""The monetary amount insured for the `packingCarton`"""
+amountInsured: Decimal
+"""When this `Carton` was created"""
+createdAt: DateTime!
+"""The user who created the `Carton`"""
+createdBy: ID!
+"""The measurement units of the height, length and width"""
+dimensionalUnit: DimensionalUnitCode!
+"""The numeric height of the `packingCarton`"""
+height: Decimal!
+"""Carton ID, prefixed with `carton_`"""
+id: ID!
+"""The items associated with the `packingCarton`"""
+items: [CartonItem!]
+"""The numeric length of the `packingCarton`"""
+length: Decimal!
+"""Whether the `Carton` is in test or live mode"""
+mode: Mode!
+organization: ID!
+"""The packaging option associated with the `packingCarton`"""
+packagingOption: PackagingOption
+"""The id of the `root` that will own the `Carton`."""
+rootId: ID!
+"""Where the item is shipping from"""
+shipFrom: Location
+"""The order's destination (customer address)"""
+shipTo: Location
+"""The packaging style (box, polybag, letter, etc)"""
+type: PackagingType!
+"""When this `Carton` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `Carton`."""
+updatedBy: ID!
+"""The heaviness of the packingCarton, using a numeric value"""
+weight: Decimal!
+"""The type of weight associated with the `packingCarton`"""
+weightUnit: WeightUnitCode!
+"""The numeric width of the `packingCarton`"""
+width: Decimal!
+}
+"""java.math.BigDecimal"""
+scalar Decimal
+"""An RFC-3339 compliant DateTime Scalar"""
+scalar DateTime
+enum DimensionalUnitCode {
+CENTIMETER
+DECIMETER
+FOOT
+INCH
+METER
+MILLIMETER
+YARD
+}
+"""
+A `CartonItem` represents an item that has been assigned to be packed to a `Carton`
+"""
+type CartonItem {
+"""The type of dimensional unit associated with the `cartonItem`"""
+dimensionalUnit: DimensionalUnitCode!
+"""The numeric height of the `cartonItem`"""
+height: Decimal!
+"""The original item associated with `cartonItem`"""
+item: Item!
+"""The numeric height of the `cartonItem`"""
+length: Decimal!
+"""How many cartonItems are included in a given `packingCarton`"""
+quantity: Int!
+"""The type of packaging required to pack the cartonItem"""
+type: PackagingType!
+"""The numeric weight of the `cartonItem`"""
+weight: Decimal!
+"""The type of weight associated with the `cartonItem`"""
+weightUnit: WeightUnitCode!
+"""The numeric width of the `cartonItem`"""
+width: Decimal!
+}
+"""
+An `Item` represents the input for a shopping cart `Item` to be quoted for Landed Cost, Shipment Rating,
+etc. `Item` is not intended to be stored and used long-term for things like the catalog; it is
+purely a method for moving data around.
+"""
+type Item {
+"""`Item` ID, prefixed with `item_`."""
+id: ID!
+customsSpecs: [CustomsSpec!]!
+"""`Item` price amount."""
+amount: Decimal!
+"""Free-form `Item` attributes."""
+attributes: [ItemAttribute]
+"""
+Link to an existing `CatalogItem` that contains more info about this `Item`.
+"""
+catalogItem: CatalogItem
+"""Country where the `Item` originates."""
+countryOfOrigin: CountryCode
+"""Indicates where the `CountryOfOrigin` was sourced from."""
+countryOfOriginSource: ItemValueSource
+"""When this `Item` was created."""
+createdAt: DateTime!
+"""The user that created this `Item`."""
+createdBy: ID!
+"""The currency this `Item` price amount is in."""
+currencyCode: CurrencyCode!
+"""Human-readable `Item` description."""
+description: String
+"""Allows user to remove items from duties, taxes, or fee calculations"""
+dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+"""HS code for this `Item`."""
+hsCode: String
+"""Indicates where the HS code for this `Item` was acquired."""
+hsCodeSource: ItemValueSource
+"""Optional URL to an image that represents this `Item`."""
+imageUrl: String
+"""Determines whether or not an item can be physically shipped."""
+itemType: ItemType
+"""List of `Item` weights and dimensions."""
+measurements: [ItemMeasurement]
+"""User-accessible key/value metadata."""
+metadata: [ItemMetadata]
+"""Whether this `Item` was created in live or test mode."""
+mode: Mode!
+"""Human readable item name."""
+name: String
+"""The unique identifier associated with an organization."""
+organization: ID!
+"""The product ID of the parent `Item` for multi-SKU situations."""
+parentProductId: String @deprecated
+"""The `Item` product ID."""
+productId: String!
+"""
+Optional administrative area where this `Item` originates. Required by some countries.
+"""
+provinceOfOrigin: String
+"""Quantity of this specific `Item` being represented."""
+quantity: Int!
+"""
+when the item is restricted, this property will have some details as to why.
+"""
+restriction: RestrictedItem
+"""SKU of this Item."""
+sku: String
+"""When this `Item` was most recently updated."""
+updatedAt: DateTime!
+"""User who most recently updated this `Item`."""
+updatedBy: ID!
+}
+type CustomsSpec implements Node {
+"""Subtotal amounts of how the `Order` amount was calculated."""
+amountSubtotals: CustomsSpecAmountSubtotals!
+"""Objects including other details about the `CustomsSpec`"""
+attributes: [CustomsSpecAttribute!]
+"""The `Carton` objects that are tied to this `CustomsSpec`"""
+cartons: [Carton!]
+"""The type of clearance for this `CustomsSpec`"""
+clearanceType: ClearanceType
+"""The timestamp of when this `CustomsSpec` was created"""
+createdAt: DateTime!
+"""
+The two letter currency code that the totals for this `CustomsSpec` will be represented in
+"""
+currencyCode: CurrencyCode!
+"""
+The `CustomsItem` objects that are a result of generating this `CustomsSpec`
+"""
+customsItems: [CustomsItem!]
+"""Declaration statement to be used for this `CustomsSpec`"""
+declarationStatement: String
+"""`CustomsSpec` ID prefixed with `customs_spec_`"""
+id: ID!
+"""Applicable Incoterm for this `CustomsSpec`"""
+incoterm: IncotermCode!
+"""Optional metadata key/value pairs"""
+metadata: [CustomsMetadata!]
+"""The `Mode` this `CustomsSpec` was created in"""
+mode: Mode!
+"""The `Organization` associated with the `CustomsSpec`"""
+organization: ID!
+"""A list of parties associated with the `CustomsSpec`"""
+parties: [Party!]
+"""The customs term for the end use of this export"""
+reasonForExport: LandedCostEndUse!
+"""The service level that was used by the carrier for this `CustomsSpec`"""
+serviceLevel: String
+"""
+The tracking number provided by the carrier who is handling this shipment
+"""
+trackingNumber: String
+"""The timestamp of when this `CustomsSpec` was updated"""
+updatedAt: DateTime!
+}
+interface Node {
+id: ID!
+}
+"""Subtotal amounts of how the `Order` amount was calculated."""
+type CustomsSpecAmountSubtotals {
+"""The total duties amount"""
+duties: Decimal
+"""The total fees amount"""
+fees: Decimal
+"""The total cost of insurance"""
+insurance: Decimal
+"""The total cost of the items"""
+items: Decimal
+"""The total cost of shipping"""
+shipping: Decimal
+"""The total tax amount"""
+taxes: Decimal
+}
+type CustomsSpecAttribute {
+"""Where this `CustomsSpec` is originating from"""
+source: CustomsSpecSourceType!
+"""The ID of the source"""
+sourceId: String!
+"""The type of attribute this is representing"""
+type: CustomsSpecAttributeType!
+"""The value of the attribute"""
+value: String!
+}
+enum CustomsSpecSourceType {
+API_REQUEST
+CATALOG
+CLASSIFY
+ORGANIZATION_SETTING
+}
+enum CustomsSpecAttributeType {
+ACCOUNT_NUMBER
+B13A
+ECCN
+EORI
+ITN
+ORDER_NUMBER
+PURCHASE_ORDER_NUMBER
+}
+enum ClearanceType {
+COMMERCIAL
+POSTAL
+}
+enum CurrencyCode {
+AED
+AFN
+ALL
+AMD
+ANG
+AOA
+ARS
+AUD
+AWG
+AZN
+BAM
+BBD
+BDT
+BGN
+BHD
+BIF
+BMD
+BND
+BOB
+BRL
+BSD
+BTC
+BTN
+BWP
+BYN
+BYR
+BZD
+CAD
+CDF
+CHF
+CLF
+CLP
+CNY
+COP
+CRC
+CUC
+CUP
+CVE
+CZK
+DJF
+DKK
+DOP
+DZD
+EGP
+ERN
+ETB
+EUR
+FJD
+FKP
+GBP
+GEL
+GGP
+GHS
+GIP
+GMD
+GNF
+GTQ
+GYD
+HKD
+HNL
+HRK @deprecated
+HTG
+HUF
+IDR
+ILS
+IMP
+INR
+IQD
+IRR
+ISK
+JEP
+JMD
+JOD
+JPY
+KES
+KGS
+KHR
+KMF
+KPW
+KRW
+KWD
+KYD
+KZT
+LAK
+LBP
+LKR
+LRD
+LSL
+LTL
+LVL
+LYD
+MAD
+MDL
+MGA
+MKD
+MMK
+MNT
+MOP
+MRO
+MUR
+MVR
+MWK
+MXN
+MYR
+MZN
+NAD
+NGN
+NIO
+NOK
+NPR
+NZD
+OMR
+PAB
+PEN
+PGK
+PHP
+PKR
+PLN
+PYG
+QAR
+RON
+RSD
+RUB
+RWF
+SAR
+SBD
+SCR
+SDG
+SEK
+SGD
+SHP
+SLE
+SLL @deprecated
+SOS
+SRD
+STD
+SVC
+SYP
+SZL
+THB
+TJS
+TMT
+TND
+TOP
+TRY
+TTD
+TWD
+TZS
+UAH
+UGX
+USD
+UYU
+UZS
+VEF
+VND
+VUV
+WST
+XAF
+XAG
+XAU
+XCD
+XDR
+XOF
+XPF
+YER
+ZAR
+ZMK
+ZMW
+ZWL
+}
+"""
+A `CustomsItem` is the product of a `CustomsSpec` and includes improved item data
+"""
+type CustomsItem {
+"""The total price amount for this item"""
+amount: Decimal!
+"""The country that this item originates from"""
+countryOfOrigin: CountryCode!
+"""Where this origin information came from"""
+countryOfOriginSource: ItemValueSource!
+"""The description of this item for the purpose of clearance"""
+description: String!
+"""The HS code that describes this item"""
+hsCode: String!
+"""The source of the HS code classification"""
+hsCodeSource: ItemValueSource!
+"""The items associated with the `CustomsItem`"""
+items: [Item!]!
+"""The province that this item originates from"""
+provinceOfOrigin: String
+"""Where this province information came from"""
+provinceOfOriginSource: ItemValueSource
+"""The total number of this item"""
+quantity: Decimal!
+}
+enum CountryCode {
+AD
+AE
+AF
+AG
+AI
+AL
+AM
+AO
+AQ
+AR
+AS
+AT
+AU
+AW
+AX
+AZ
+BA
+BB
+BD
+BE
+BF
+BG
+BH
+BI
+BJ
+BL
+BM
+BN
+BO
+BQ
+BR
+BS
+BT
+BV
+BW
+BY
+BZ
+CA
+CC
+CD
+CF
+CG
+CH
+CI
+CK
+CL
+CM
+CN
+CO
+CR
+CU
+CV
+CW
+CX
+CY
+CZ
+DE
+DJ
+DK
+DM
+DO
+DZ
+EC
+EE
+EG
+EH
+ER
+ES
+ET
+FI
+FJ
+FK
+FM
+FO
+FR
+GA
+GB
+GD
+GE
+GF
+GG
+GH
+GI
+GL
+GM
+GN
+GP
+GQ
+GR
+GS
+GT
+GU
+GW
+GY
+HK
+HM
+HN
+HR
+HT
+HU
+IC
+ID
+IE
+IL
+IM
+IN
+IO
+IQ
+IR
+IS
+IT
+JE
+JM
+JO
+JP
+KE
+KG
+KH
+KI
+KM
+KN
+KP
+KR
+KW
+KY
+KZ
+LA
+LB
+LC
+LI
+LK
+LR
+LS
+LT
+LU
+LV
+LY
+MA
+MC
+MD
+ME
+MF
+MG
+MH
+MK
+ML
+MM
+MN
+MO
+MP
+MQ
+MR
+MS
+MT
+MU
+MV
+MW
+MX
+MY
+MZ
+NA
+NC
+NE
+NF
+NG
+NI
+NL
+NO
+NP
+NR
+NU
+NZ
+OM
+PA
+PE
+PF
+PG
+PH
+PK
+PL
+PM
+PN
+PR
+PS
+PT
+PW
+PY
+QA
+RE
+RO
+RS
+RU
+RW
+SA
+SB
+SC
+SD
+SE
+SG
+SH
+SI
+SJ
+SK
+SL
+SM
+SN
+SO
+SR
+SS
+ST
+SV
+SX
+SY
+SZ
+TC
+TD
+TF
+TG
+TH
+TJ
+TK
+TL
+TM
+TN
+TO
+TR
+TT
+TV
+TW
+TZ
+UA
+UG
+UM
+US
+UY
+UZ
+VA
+VC
+VE
+VG
+VI
+VN
+VU
+WF
+WS
+YE
+YT
+ZA
+ZM
+ZW
+}
+enum ItemValueSource {
+API_REQUEST
+CATALOG
+ORGANIZATION_SETTING
+}
+"""International Commercial Terms"""
+enum IncotermCode {
+"""Cost, Insurance & Freight"""
+CIF
+CUSTOM
+"""Delivered At Place"""
+DAP
+"""Delivered Duty Paid"""
+DDP
+"""Free On Board"""
+FOB
+}
+type CustomsMetadata {
+"""A key to identify what the value represents"""
+key: String!
+"""The value specified"""
+value: String
+}
+enum Mode {
+LIVE
+TEST
+}
+type Party {
+id: ID!
+createdAt: DateTime!
+createdBy: ID!
+location: Location
+mode: Mode!
+organization: ID!
+organizationId: ID! @deprecated(reason: "Use `organization` instead")
+person: Person
+type: PartyType
+updatedAt: DateTime!
+updatedBy: ID!
+}
+type Location {
+id: ID!
+administrativeArea: String
+administrativeAreaCode: String
+countryCode: CountryCode!
+createdAt: DateTime!
+createdBy: ID!
+latitude: Decimal
+line1: String
+line2: String
+line3: String
+line4: String
+locality: String
+longitude: Decimal
+metadata: [PartyMetadata]
+mode: Mode!
+organization: ID!
+plusCode: String
+postalCode: String
+propertyType: PropertyType
+updatedAt: DateTime!
+updatedBy: ID!
+}
+type PartyMetadata {
+key: String!
+value: String
+}
+enum PropertyType {
+COMMERCIAL
+RESIDENTAL @deprecated
+RESIDENTIAL
+}
+type Person {
+companyName: String
+createdAt: DateTime!
+createdBy: ID!
+email: String
+firstName: String
+id: ID!
+lastName: String
+metadata: [PartyMetadata]
+mode: Mode!
+organization: ID!
+phone: String
+updatedAt: DateTime!
+updatedBy: ID!
+}
+enum PartyType {
+DESTINATION
+ORIGIN
+PAYEE
+PAYOR
+}
+enum LandedCostEndUse {
+"""Item quoted will be resold upon import"""
+FOR_RESALE
+"""Item quoted will not be resold upon import (e.g. personal use, gift)"""
+NOT_FOR_RESALE
+}
+type ItemAttribute {
+key: String
+value: String
+}
+"""A representation of a `CatalogItem`."""
+type CatalogItem {
+"""The amount of a `CatalogItem`."""
+amount: Decimal
+"""Other `CatalogItem` attributes."""
+attributes: [ItemAttribute]
+"""The marketing name associated with an item."""
+brand: String
+"""The `CatalogItem` location."""
+catalogItemUrl: String
+"""
+the classificationId if an catalogItem was created through classification
+"""
+classification: ID
+"""country configuration for the item."""
+configurations: [CatalogItemConfiguration]
+"""Where a CatalogItem is manufactured."""
+countryOfOrigin: CountryCode
+"""When this `CatalogItem` was created."""
+createdAt: DateTime!
+"""The user who created the `CatalogItem`."""
+createdBy: ID!
+"""The currency that the amount of this `CatalogItem` is in."""
+currencyCode: CurrencyCode
+"""The `CatalogItem` full description."""
+description: String
+"""Allows user to remove items from duties, taxes, or fee calculations"""
+dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+"""the default hsCode for the product"""
+hsCode: String
+"""hsCodes overrides, country or attribute specific for the item"""
+hsCodes: [CatalogItemHsCode]
+"""The ID of the `CatalogItem`."""
+id: ID!
+"""The url of an image."""
+imageUrl: String
+"""Determines whether or not an item can be physically shipped."""
+itemType: ItemType
+"""The `CatalogItem` material composition."""
+material: String
+"""A `CatalogItem` physical measurements."""
+measurements: [ItemMeasurement]
+"""Other `CatalogItem` details ie: vendor_id."""
+metadata: [ItemMetadata]
+"""The primary name of a `CatalogItem`."""
+name: String
+"""The unique identifier associated with an organization."""
+organization: ID!
+"""Product ID of the `CatalogItem`."""
+productId: String
+"""
+Optional administrative area where this item originates. Required by some countries.
+"""
+provinceOfOrigin: String
+"""a list of restricted country code"""
+restrictedCountries: [CountryCode]
+"""SKU of this `CatalogItem`."""
+sku: String
+"""Source of `CatalogItem`."""
+source: CatalogItemSource!
+"""When this `CatalogItem` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `CatalogItem`."""
+updatedBy: ID!
+}
+type CatalogItemConfiguration {
+"""The amount of a `CatalogItem`."""
+amount: Decimal
+"""
+the classificationId if an catalogItem was created through classification
+"""
+classification: ID
+"""When this `CatalogItem` was created."""
+createdAt: DateTime!
+"""The user who created the `CatalogItem`."""
+createdBy: ID!
+"""The currency that the amount of this `CatalogItem` is in."""
+currencyCode: CurrencyCode
+"""Allows user to remove items from duties, taxes, or fee calculations"""
+dutyTaxFeeConfiguration: DutyTaxFeeConfiguration
+"""the id of the configuration catalog item"""
+id: Int
+"""ship to country"""
+shipToCountry: CountryCode
+"""When this `CatalogItem` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `CatalogItem`."""
+updatedBy: ID!
+}
+enum DutyTaxFeeConfiguration {
+EXCLUDE_ALL
+EXCLUDE_DUTY
+EXCLUDE_FEE
+EXCLUDE_TAX
+INCLUDE_ALL
+INCLUDE_TAX
+}
+type CatalogItemHsCode {
+"""
+the classificationId if an catalogItem was created through classification
+"""
+classification: ID
+"""When this `CatalogItem` was created."""
+createdAt: DateTime!
+"""The user who created the `CatalogItem`."""
+createdBy: ID!
+"""The HsCode of the item."""
+hsCode: String
+"""the id of the hsCode catalog item"""
+id: Int
+"""ship to country"""
+shipToCountry: CountryCode
+"""When this `CatalogItem` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `CatalogItem`."""
+updatedBy: ID!
+}
+enum ItemType {
+DIGITAL_GOOD
+PHYSICAL_GOOD
+SERVICE
+SUBSCRIPTION
+}
+"""Represents `Item` weight, dimension, or other specific `Measurement`."""
+type ItemMeasurement {
+"""Where the `Measurement` is sourced from."""
+source: ItemValueSource!
+"""Indicates what type of `Measurement`, e.g. weight, specific dim unit."""
+type: ItemMeasurementType!
+"""Indicates the `Measurement` units to be used."""
+unitOfMeasure: ItemUnitOfMeasure!
+"""The `Measurement` value."""
+value: Decimal!
+}
+enum ItemMeasurementType {
+HEIGHT
+LENGTH
+WEIGHT
+WIDTH
+}
+enum ItemUnitOfMeasure {
+CENTIMETER
+FOOT
+GRAM
+INCH
+KILOGRAM
+METER
+MILLIMETER
+OUNCE
+POUND
+YARD
+}
+type ItemMetadata {
+key: String
+value: String
+}
+enum CatalogItemSource {
+CLASSIFICATION
+LEGACY_MIGRATION
+USER_PROVIDED
+}
+"""
+A `RestrictedItem represent an item that has been restricted.
+3 ways an item can be restricted: via catalog's restricted countries, a rule, or itemRestriction API. 
+"""
+type RestrictedItem {
+"""`CatalogItem` if the restriction was due to catalog """
+catalogItem: CatalogItem
+"""`RestrictedItem` ID, prefixed with `restricted_item_`."""
+id: ID!
+"""`Item` that was restricted."""
+item: Item!
+"""
+`itemRestrictions` if the restriction was due to restricted item result 
+"""
+itemRestrictions: ItemRestrictionsResult
+"""the reason this item was restricted"""
+reason: String!
+"""`Rule` if the restriction was due to a rule """
+rule: Rule
+}
+type ItemRestrictionsResult {
+id: ID!
+}
+"""
+Represents a rule to be run by our expression parser/rules engine during a
+calculation.
+"""
+type Rule {
+"""Rule ID, prefixed with `rule_`"""
+id: ID!
+"""Evaluated expression that applies to the `rule`"""
+action: String!
+"""Condition when the rule applies"""
+condition: String!
+"""Indicates which context this rule is used in and when it should run"""
+context: String!
+"""When this `Rule` was created"""
+createdAt: DateTime!
+"""The user who created the `Rule`"""
+createdBy: ID!
+"""Human readable comment on the `rule`"""
+description: String!
+"""
+Date the rule stops being effective. If null, the rule has no set end date
+"""
+endsAt: DateTime
+"""Whether the `rule` is in test or live mode."""
+mode: Mode!
+"""The `rule` display name."""
+name: String!
+"""
+The `organization` that is associated with the `rule` if specific to an org.
+"""
+organization: ID!
+"""Date the rule becomes effective. If null, the rule is disabled."""
+startsAt: DateTime
+"""When this `Rule` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `Rule`."""
+updatedBy: ID!
+}
+enum PackagingType {
+ENVELOPE
+FLAT
+PACKAGE
+PAK
+PARCEL
+POLYBAG
+TUBE
+}
+enum WeightUnitCode {
+GRAM
+KILOGRAM
+OUNCE
+POUND
+}
+"""A `packagingOption` represents a box that can be used to ship an item"""
+type PackagingOption {
+"""When the `packagingOption` was created"""
+createdAt: DateTime!
+"""The user who created the `PackagingOption`"""
+createdBy: ID!
+"""The measurement units of the height, length and width"""
+dimensionalUnit: DimensionalUnitCode!
+"""The numeric height of the `packagingOption`"""
+height: Decimal!
+"""PackagingOption ID, prefixed with `packagingOption_`"""
+id: ID!
+"""The numeric length of the `packagingOption`"""
+length: Decimal!
+"""Whether the `packagingOption` is in test or live mode"""
+mode: Mode!
+"""
+The name the `organization` is using for a particular `packagingOption`
+"""
+name: String!
+"""The `organization` associated with the `packagingOption`"""
+organization: ID!
+"""The source from where the `PackagingOption` was generated"""
+source: PackagingOptionSource!
+"""The packaging style (box, polybag, letter, etc.)"""
+type: PackagingType!
+"""When the `packagingOption` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `PackagingOption`."""
+updatedBy: ID!
+"""The maximum weight of the `packagingOption`"""
+weightCapacity: Decimal!
+"""The type of weight associated with the `packingCarton`"""
+weightUnit: WeightUnitCode!
+"""The numeric width of the `packagingOption`"""
+width: Decimal!
+}
+enum PackagingOptionSource {
+DYNAMIC
+ORGANIZATION
+}
+type ExchangeRate {
+createdAt: DateTime!
+createdBy: ID!
+expiresAt: DateTime!
+id: ID!
+mode: Mode!
+rate: Decimal!
+sourceCurrencyCode: CurrencyCode!
+targetCurrencyCode: CurrencyCode!
+targetFormat: CurrencyFormat
+type: ExchangeRateType!
+}
+type CurrencyFormat {
+"""The currency code that applies to the `currencyFormat`"""
+currencyCode: CurrencyCode!
+"""
+The character used to separate the whole units from the fractional units
+"""
+decimalDelimiter: String!
+"""The number of decimal places to display for the currency"""
+scale: Int!
+"""The characters used as a symbol of the currency"""
+symbol: String!
+"""The location of where the symbol is displayed"""
+symbolLocation: CurrencySymbolLocation
+"""The character used as the thousands separate"""
+thousandsDelimiter: String!
+}
+enum CurrencySymbolLocation {
+"""display after the currency amount"""
+AFTER
+"""display before the currency amount"""
+BEFORE
+}
+enum ExchangeRateType {
+"""Average rate for that day - NOT GUARANTEED"""
+MID_MARKET
+}
+"""
+A `LandedCost` represents the result of a landed cost calculation. `LandedCost` quotes belong to a `Root`
+resource and additionally include a `ShipmentRating` resource with additional details about the shipping
+costs
+"""
+type LandedCost {
+"""Amount totals for duties, taxes, fees"""
+amountSubtotals: LandedCostAmountSubtotals
+"""When this `LandedCost` was created"""
+createdAt: DateTime!
+"""The user who created the `LandedCost`"""
+createdBy: ID!
+"""Currency code of the LandedCost."""
+currencyCode: CurrencyCode!
+"""A list of de minimis thresholds and what values they apply to"""
+deMinimis: [DeMinimis!]!
+"""A list of duties assessed for this `LandedCost`"""
+duties: [Duty!]!
+"""End use for items included in this quote"""
+endUse: LandedCostEndUse!
+"""A list of fees assessed for this `LandedCost`"""
+fees: [Fee!]!
+"""`LandedCost` resource ID, prefixed with `landed_cost_`"""
+id: ID!
+"""
+Indicates if the landed cost is covered by the Zonos Landed Cost Guarantee
+"""
+landedCostGuaranteeCode: LandedCostGuaranteeCode!
+"""INCOTERM used to perform calculations"""
+method: IncotermCode!
+"""Indicates whether this `LandedCost` was created in live or test mode"""
+mode: Mode!
+"""`Organization` that this `LandedCost` belongs to"""
+organization: ID!
+"""The taxes that should be remitted."""
+remittance: [LandedCostRemittance!]!
+"""`Root` resource that this `LandedCost` belongs to"""
+root: Root
+"""`Root` resource ID that this `LandedCost` belongs to"""
+rootId: ID!
+"""
+`ShipmentRating` that contains shipping cost and other related details for this `LandedCost`
+"""
+shipmentRating: ShipmentRating!
+"""
+Indicates what method Zonos used to calculate the tariff rates for this `LandedCost`
+"""
+tariffRate: LandedCostTariffRate!
+"""A list of taxes assessed for this `LandedCost`"""
+taxes: [Tax!]!
+"""When this `LandedCost` was most recently updated"""
+updatedAt: DateTime!
+"""The user who most recently updated the `LandedCost`"""
+updatedBy: ID!
+taxId: TaxId
+}
+"""The subtotals that make up a landed cost."""
+type LandedCostAmountSubtotals {
+"""Total amount of all duties."""
+duties: Decimal!
+"""Total amount of all fees."""
+fees: Decimal!
+"""Total amount of all items."""
+items: Decimal!
+"""Total amount of duties, taxes, and fees."""
+landedCostTotal: Decimal!
+"""Total amount of shipping."""
+shipping: Decimal!
+"""Total amount of all taxes."""
+taxes: Decimal!
+}
+"""
+Represents a de minimis amount on a `LandedCost` quote, what it applies to, and how it was assessed
+"""
+type DeMinimis {
+"""Human readable formula indicating how this de minimis was calculated"""
+formula: String!
+"""INCOTERM used to assess the de minimis value"""
+method: IncotermCode!
+"""Additional note"""
+note: String!
+"""Indicates whether the de mimimis is above or below the threshold"""
+threshold: DeMinimisThreshold!
+"""What this de minimis applies to"""
+type: DeMinimisType!
+}
+enum DeMinimisThreshold {
+"""De minimis was above threshold"""
+ABOVE
+"""De minimis was below threshold"""
+BELOW
+}
+enum DeMinimisType {
+"""De minimis applies to duty"""
+DUTY
+"""De minimis applies to fees"""
+FEE
+"""De minimis applies to tax"""
+TAX
+}
+"""Represents a duty amount on a `LandedCost` quote"""
+type Duty {
+"""
+`Duty` amount in the currency specified by the `Root` object which owns this `LandedCost`
+"""
+amount: Decimal!
+"""
+Currency the `Duty` amount is in. @deprecated use currencyCode instead.
+"""
+currency: CurrencyCode!
+"""Currency the `Duty` amount is in."""
+currencyCode: CurrencyCode!
+"""Human-readable description of this `Duty`."""
+description: String
+"""Exchange rate information for foreign currency `Duty` amounts"""
+exchangeRate: ExchangeRate
+"""Human readable formula indicating how this duty was calculated"""
+formula: String!
+"""`Item` that this duty amount applies to"""
+item: Item
+"""Additional note for this `Duty`."""
+note: String
+"""`Party` responsible for receiving payment on this duty amount"""
+payee: Party
+"""`Party` responsible for rendering payment on this duty amount"""
+payor: Party
+"""Type of `Duty`."""
+type: LandedCostFeeType!
+}
+enum LandedCostFeeType {
+ADDITIONAL_TARIFF_LINES
+ADVANCEMENT
+BROKERAGE_FEE
+COD
+COUNTRY
+CURRENCY_CONVERSION_FEE
+DDP_SERVICE_FEE
+DUTY
+ITEM
+OTHER
+SHIPPING
+ZONOS_LANDED_COST_GUARANTEE
+}
+"""Represents a fee amount on a `LandedCost` quote"""
+type Fee {
+"""
+`Fee` amount in the currency specified by the `Root` object which owns this `LandedCost`
+"""
+amount: Decimal!
+"""Currency the `Fee` amount is in. @deprecated use currencyCode instead."""
+currency: CurrencyCode!
+"""Currency the `Fee` amount is in."""
+currencyCode: CurrencyCode!
+"""Human readable description of this `Fee`."""
+description: String
+"""Exchange rate information for foreign currency `Fee` amounts"""
+exchangeRate: ExchangeRate
+"""Type of fee @deprecated use type"""
+feeType: LandedCostFeeType!
+"""Human readable formula indicating how this fee was calculated"""
+formula: String!
+"""`Item` this `Fee` amount applies to"""
+item: Item
+"""Additional note for this `Fee`."""
+note: String
+"""Party responsible for receving payment on this `Fee`"""
+payee: Party
+"""Party responsible for rendering payment on this `Fee`"""
+payor: Party
+"""Type of fee"""
+type: LandedCostFeeType!
+}
+enum LandedCostGuaranteeCode {
+"""No guarantee"""
+NOT_APPLICABLE
+"""Zonos covers any landed cost discrepancies"""
+ZONOS
+}
+"""Represents the tax remittance values required by specific entities."""
+type LandedCostRemittance {
+"""The price amount of the tax remittance."""
+amount: Decimal!
+"""The type of tax remittance."""
+description: String!
+"""A note on where to remit the tax remittance."""
+note: String!
+}
+""" These partition the cartons."""
+type ShipmentRating {
+"""A unique identifier for the ShipmentRating."""
+id: ID!
+appliedRules: [AppliedRule]
+"""The quoted amount for the ShipmentRating."""
+amount: Decimal!
+"""Subtotal amounts of how the ShipmentRating amount was calculated."""
+amountSubtotals: ShipmentRatingSubtotals!
+"""When this ShipmentRating was created."""
+createdAt: DateTime!
+"""The user who created the ShipmentRating"""
+createdBy: ID!
+"""The currency this ShipmentRating price amount is in."""
+currencyCode: CurrencyCode!
+"""Breakdown of the details returned from the carrier."""
+details: [ShipmentRatingDetail!]
+"""The customer facing display name of the ShipmentRating."""
+displayName: String!
+"""The ISO-8601 timestamp of when the delivery will be delivered"""
+maxTransitAt: DateTime
+"""The ISO-8601 timestamp of when the delivery could first be delivered"""
+minTransitAt: DateTime
+"""
+For shipments that contain multiple fulfillment warehouses the multipleShipFromRatings will contain the individual `ShipmentRating` calculations.
+The aggregated totals will be reflected on the parent object. In these cases the shipFrom location will be null.
+"""
+multipleShipFromRatings: [ShipmentRating]
+"""The `Organization` associated with the ShipmentRating"""
+organization: ID!
+"""The `ServiceLevel` code associated with the ShipmentRating."""
+serviceLevelCode: String!
+"""The `Location` associated with the origin of the shipment."""
+shipFrom: Location
+"""Specifies the `Carton`'s destination."""
+shipTo: Location
+"""The `Carton` data included in the ShipmentRating."""
+shipmentRatingCartons: [ShipmentRatingCarton!]!
+"""The `ShippingProfile` associated with the ShipmentRating."""
+shippingProfile: ShippingProfile
+"""When this ShipmentRating was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the ShipmentRating."""
+updatedBy: ID!
+}
+type AppliedRule {
+"""Json String of the context values after the rule was applied"""
+after: String!
+"""Json string of the context values before to the rule being applied"""
+before: String!
+"""When this `Rule` was created"""
+createdAt: DateTime!
+"""Rule ID, prefixed with `rule_`"""
+id: ID!
+"""
+The `organization` that is associated with the `rule` if specific to an org.
+"""
+organization: ID!
+"""The Id of the rule that was applied"""
+rule: Rule!
+}
+"""Subtotal amounts of how the `ShipmentRating` amount was calculated"""
+type ShipmentRatingSubtotals {
+"""Amount charged for the fuel surcharge by the `Carrier`."""
+fuelSurcharge: Decimal
+"""Cost to insure items that is charged by the `Carrier`."""
+insuranceCost: Decimal
+"""
+The sum of any other surcharges that are not individually broken down by the `Carrier` (residential falls into this bucket).
+"""
+otherSurcharge: Decimal
+"""Cost of shipping as defined by the `Carrier`."""
+shipping: Decimal!
+}
+"""A surcharge or discount breakdown provided by the carrier."""
+type ShipmentRatingDetail {
+"""Amount for each charge as defined by the `Carrier`."""
+amount: Decimal!
+"""
+Unique identifier that will be tied to each fee that is charged by the carrier for the `ShipmentRating`.
+"""
+carrierCode: String!
+"""
+The type of fee that is being broken down as part of the `ShipmentRating`.
+"""
+type: ShipmentAmountType!
+}
+enum ShipmentAmountType {
+BUFFER
+DISCOUNT
+FUEL_SURCHARGE
+INSURANCE
+PUBLISHED_RATE
+SURCHARGE
+}
+"""
+The Carton details containing the package dimensions and items included in the `ShipmentRating`
+"""
+type ShipmentRatingCarton {
+"""
+The monetary amount to insure a `Carton` for to account for unexpected incidents.
+"""
+amountInsured: Decimal!
+"""The `Carton` associated with the ShipmentRatingCarton"""
+carton: Carton!
+"""
+The weight the carrier is charging for this carton. This could be actual or dimensional weight of the carton.
+"""
+chargeableWeight: Decimal
+"""
+The `dimensionalWeight` factor used to determine the `dimensionalWeight`.
+"""
+dimensionalFactor: Int
+"""The calculated `dimensionalWeight` of the carton."""
+dimensionalWeight: Decimal
+}
+"""
+A ShippingProfile object is used to map a `ServiceLevel` to an `Organization`. Allowing the Organization to adjust
+the display name and apply rate charts to the service level.
+"""
+type ShippingProfile {
+"""When this ShippingProfile was created."""
+createdAt: DateTime!
+"""The user who created the ShippingProfile."""
+createdBy: ID!
+"""
+A customized carrier service level code to identify how to fulfill the shipment.
+"""
+customServiceLevelCode: String
+"""A unique identifier for the ShippingProfile."""
+id: ID!
+"""
+The method to use for the landed cost calculation for the ShippingProfile.
+"""
+landedCostMethod: LandedCostMethod
+"""Specifies whether the ShippingProfile is in live or test mode."""
+mode: Mode!
+"""The humanly-memorable display name of the ShippingProfile."""
+name: String!
+"""The `Organization` associated with the ShippingProfile."""
+organization: ID!
+"""The `ServiceLevel` associated with the ShippingProfile."""
+serviceLevel: ServiceLevel!
+"""The shipping percent increase"""
+shippingPercentIncrease: Decimal
+"""The `ShippingProfileRateCharts` that apply to this profile."""
+shippingRates: [ShippingProfileRateChart!]
+"""The shipping value increase"""
+shippingValueIncrease: Decimal
+"""`TransitTime` breakdown that applies to the ShippingProfile."""
+transitTime: TransitTime
+"""When this ShippingProfile was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the ShippingProfile."""
+updatedBy: ID!
+}
+"""The method to use for the landed cost calculation."""
+enum LandedCostMethod {
+"""Only provide a DAP quote"""
+DAP_FORCED
+"""Provide both a DDP and DAP quote"""
+DDP_AND_DAP
+"""Only provide a DDP """
+DDP_FORCED
+"""provide a DDP quote but return a DAP quote if DDP is not allowed"""
+DDP_PREFERRED
+}
+"""
+A `ServiceLevel` is a predefined service provided by a `Carrier` to a given country or region.
+`ServiceLevel` will impact time in transit and the associated shipment rating.
+`ServiceLevel` eligibility may be impacted by product attributes, such as value and dimensions.
+"""
+type ServiceLevel {
+"""A unique identifier for the ServiceLevel."""
+id: ID!
+parties: [Party]
+"""
+Enumerated value that specifies whether a ServiceLevel is available to all customers or is specifically contracted
+"""
+availability: ServiceLevelAvailability!
+"""The `Carrier` associated with ServiceLevel."""
+carrier: Carrier!
+"""The code for the ServiceLevel as defined by the external carrier API"""
+carrierApiCode: String!
+"""
+The code used to generate labels for this ServiceLevel defined by the external carrier API.
+"""
+carrierLabelApiCode: String
+"""
+The enumerated value of ServiceLevel options that can be sent in the API.
+"""
+code: String!
+"""
+The list of restrictions that exist around countries, weights, dims, and prices for a ServiceLevel.
+"""
+countryConstraints: [CountryConstraint!]
+"""When this `serviceLevel` was created."""
+createdAt: DateTime!
+"""The user who created the ServiceLevel."""
+createdBy: ID!
+"""
+The method of delivery that indicates how the clearance is processed with this ServiceLevel.
+"""
+deliveryType: DeliveryType
+"""The ServiceLevel display name as prescribed by the `Carrier`."""
+name: String!
+"""Transit Time breakdown that applies to the ServiceLevel."""
+transitTime: TransitTime
+"""When this ServiceLevel was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the ServiceLevel."""
+updatedBy: ID!
+}
+enum ServiceLevelAvailability {
+CONTRACTED
+DISABLED
+GENERAL
+}
+"""
+A `Carrier` is a shipping provider that Zonos supports through its products and services.
+Carriers enable the shipping of goods from one country to another based on the availability of a `ServiceLevel` to the country.
+"""
+type Carrier {
+"""A unique identifier for the Carrier."""
+id: ID!
+parties: [Party]
+"""A unique identifier tied to a Carrier."""
+code: String!
+"""
+A list of country-specific restrictions a `Carrier` should be aware of (e.g., weight, dimensions, pricing).
+"""
+countryConstraints: [CountryConstraint!]
+"""When this Carrier was created."""
+createdAt: DateTime!
+"""The user who created the Carrier."""
+createdBy: ID!
+"""The Carrier's API credentials."""
+credentials: [CarrierCredential!]
+"""The humanly-memorable display name for the Carrier."""
+name: String!
+"""Provides a list of `ServiceLevel`s that are supported by the Carrier."""
+serviceLevels: [ServiceLevel!]
+"""When this Carrier was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the Carrier."""
+updatedBy: ID!
+}
+"""
+A `CountryConstraint` can be assigned to a `ServiceLevel` to limit countries that are supported by a given `ServiceLevel`.
+These can also be used to limit shipments supported by the `serviceLevel` and origin/destination based on value, weight, quantity, or volume of given items in a shipment.
+"""
+type CountryConstraint {
+"""
+Represents a constraint around a specific attribute that applies to all countries.
+"""
+constraints: [Constraint]
+"""When this CountryConstraint was created."""
+createdAt: DateTime!
+"""The user who created the CountryConstraint."""
+createdBy: ID!
+"""Indicates the type of billing option that is supported."""
+dutyTaxBilling: BillingOptionCode
+"""A unique identifier for the CountryConstraint."""
+id: ID!
+"""List of incoterms supported by the CountryConstraint."""
+incoterm: [IncotermCode!]
+"""List of ISO 3166 country codes that apply in the ship from location."""
+shipFromCountryCodes: [CountryCode!]!
+"""List of ISO 3166 country codes that apply in the ship to location."""
+shipToCountryCodes: [CountryCode!]!
+"""`TransitTime` breakdown that applies to the CountryConstraint."""
+transitTime: TransitTime
+"""When this CountryConstraint was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the CountryConstraint."""
+updatedBy: ID!
+"""The `WeightUnitCode` required by the CountryConstraint."""
+weightUnit: WeightUnitCode
+}
+"""
+A constraint is an object that is required when applying a `countryConstraint` to a `serviceLevel`.
+These constraints are typically based on price, quantity, volume, or weight.
+"""
+type Constraint {
+"""When this Constraint was created."""
+createdAt: DateTime!
+"""The user who created the Constraint."""
+createdBy: ID!
+"""A unique identifier for the Constraint."""
+id: ID!
+"""The maximum amount that applies to the Constraint."""
+max: Decimal
+"""The minimum amount that applies to the Constraint."""
+min: Decimal
+"""Indicates what type of value the min and max fields represent."""
+type: ConstraintType!
+"""Represents the unit based on the type that applies to the Constraint."""
+unitOfMeasure: ConstraintUnitCode!
+"""When this Constraint was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the Constraint."""
+updatedBy: ID!
+}
+enum ConstraintType {
+GIRTH
+GIRTH_AND_LENGTH
+HEIGHT
+LENGTH
+PRICE
+QUANTITY
+VOLUME
+WEIGHT
+WIDTH
+}
+"""
+Any CurrencyCode, WeightUnitCode, DimensionalUnitCode or VolumeUnitCode
+"""
+enum ConstraintUnitCode {
+"""United Arab Emirates Dirham"""
+AED
+"""Afghan Afghani (؋)"""
+AFN
+"""Albanian Lek (Lek)"""
+ALL
+"""Armenian Dram (֏)"""
+AMD
+"""NL Antillian Guilder (ƒ)"""
+ANG
+"""Angolan Kwanza (Kz)"""
+AOA
+"""Argentine Peso"""
+ARS
+"""Australian Dollar ($)"""
+AUD
+"""Aruban Florin (ƒ)"""
+AWG
+"""Azerbaijani Manat (ман)"""
+AZN
+"""Bosnia and Herzegovina Convertible Mark (KM)"""
+BAM
+BARREL_PETROLEUM
+"""Barbadian Dollar ($)"""
+BBD
+"""Bangladeshi Taka (৳)"""
+BDT
+"""Bulgarian Lev (лв)"""
+BGN
+"""Bahraini Dinar"""
+BHD
+"""Burundian franc (FBu)"""
+BIF
+"""Bermudian Dollar ($)"""
+BMD
+"""Brunei Dollar"""
+BND
+"""Bolivian Boliviano ($b)"""
+BOB
+"""Brazilian Real (R$)"""
+BRL
+"""Bahamian Dollar ($)"""
+BSD
+"""Bitcoin"""
+BTC
+"""Bhutanese Ngultrum"""
+BTN
+BUSHEL_UK
+BUSHEL_US_DRY
+"""Botswana Pula (P)"""
+BWP
+"""New Belarusian Ruble"""
+BYN
+"""Belarusian ruble (Br)"""
+BYR
+"""Belize Dollar (BZ$)"""
+BZD
+"""Canadian Dollar ($)"""
+CAD
+CARAT
+"""Congolese Franc (FC)"""
+CDF
+CENTIGRAM
+CENTILITER_CL
+CENTIMETER
+"""Swiss Franc (CHF)"""
+CHF
+"""Unidad de Fomento (UF)"""
+CLF
+"""Chilean Peso"""
+CLP
+"""Chinese Yuan Renminbi (¥)"""
+CNY
+"""Colombian Peso"""
+COP
+"""Costa Rican Colón (₡)"""
+CRC
+CUBIC_CENTIMETER
+CUBIC_DECIMETER
+CUBIC_FOOT
+CUBIC_INCH
+CUBIC_METER
+CUBIC_MILLIMETER
+CUBIC_YARD
+"""Cuban Convertible Peso"""
+CUC
+"""Cuban Peso"""
+CUP
+"""Cape Verdean escudo"""
+CVE
+"""Czech Koruna (Kč)"""
+CZK
+DECALITER_DAL
+DECILITER
+DECIMETER
+"""Djiboutian franc (Fdj)"""
+DJF
+"""Danish Krone (kr)"""
+DKK
+"""Dominican Peso (RD$)"""
+DOP
+"""Algerian Dinar (دج)"""
+DZD
+"""Egyptian Pound (£)"""
+EGP
+"""Eritrean Nakfa"""
+ERN
+"""Ethiopian Birr (Br)"""
+ETB
+"""Euro (€)"""
+EUR
+"""Fiji Dollar"""
+FJD
+"""Falkland Islands Pound (£)"""
+FKP
+FLUID_DRAM_FL_DR
+FLUID_OUNCE_FL_OZ
+FLUID_OUNCE_UK
+FOOT
+GALLON_FLUID
+GALLON_UK
+"""British Pound (£)"""
+GBP
+"""Georgian Lari (ლ)"""
+GEL
+"""Guernsey Pound"""
+GGP
+"""Ghanaian Cedi"""
+GHS
+GILL_GI
+"""Gibraltar Pound (£)"""
+GIP
+"""Gambian Dalasi (D)"""
+GMD
+"""Guinean franc (FG)"""
+GNF
+GRAM
+"""Guatemalan Quetzal (Q)"""
+GTQ
+"""Guyanese Dollar ($)"""
+GYD
+HECTOLITER
+"""Hong Kong Dollar"""
+HKD
+"""Honduran Lempira (L)"""
+HNL
+"""Croatian Kuna (kn)"""
+HRK
+"""Haitian Gourde"""
+HTG
+"""Hungarian Forint (Ft)"""
+HUF
+"""Indonesian rupiah (Rp)"""
+IDR
+"""Isreali New Shekel (₪)"""
+ILS
+"""Manx pound"""
+IMP
+INCH
+"""Indian Rupee (Rs)"""
+INR
+"""Iraqi Dinar"""
+IQD
+"""Iranian Rial"""
+IRR
+"""Iceland Krona (kr)"""
+ISK
+"""Jersey Pound"""
+JEP
+"""Jamaican Dollar (J$)"""
+JMD
+"""Jordanian Dinar"""
+JOD
+"""Japanese Yen (¥)"""
+JPY
+"""Kenyan Shilling (KSh)"""
+KES
+"""Kyrgyzstani Som (лв)"""
+KGS
+"""Cambodian Riel (៛)"""
+KHR
+KILOGRAM
+KILOLITER
+"""Comorian franc (CF)"""
+KMF
+"""North Korean Won"""
+KPW
+"""South-Korean Won (₩)"""
+KRW
+"""Kuwaiti Dinar"""
+KWD
+"""Cayman Islands Dollar ($)"""
+KYD
+"""Kazakhastan Tenge (лв)"""
+KZT
+"""Lao Kip (₭)"""
+LAK
+"""Lebanese Pound (£)"""
+LBP
+LITER
+"""Sri Lanka Rupee (Rs)"""
+LKR
+"""Liberian Dollar ($)"""
+LRD
+"""Lesotho Loti (L)"""
+LSL
+"""Lithuanian Litas (Lt)"""
+LTL
+"""Latvian Lats"""
+LVL
+"""Libyan Dinar"""
+LYD
+"""Moroccan Dirham"""
+MAD
+"""Moldovan Leu"""
+MDL
+METER
+"""Malagasy ariary (Ar)"""
+MGA
+MICROLITER
+MILLIGRAM
+MILLILITER_ML
+MILLIMETER
+MINIM_MIN
+"""Macedonian Denar (ден)"""
+MKD
+"""Myanmar Kyat (K)"""
+MMK
+"""Mongolian Tögrög (₮)"""
+MNT
+"""Macanese Pataca"""
+MOP
+"""Mauritanian ouguiya (UM)"""
+MRO
+"""Mauritius Rupee (Rs)"""
+MUR
+"""Maldive Rufiyaa"""
+MVR
+"""Malawian Kwacha (MK)"""
+MWK
+"""Mexican Peso ($)"""
+MXN
+"""Malaysian Ringgit (RM)"""
+MYR
+"""Mozambican Metical (MT)"""
+MZN
+"""Namibian Dollar ($)"""
+NAD
+"""Nigerian Naira (₦)"""
+NGN
+"""Nicaraguan Córdoba (C$)"""
+NIO
+"""Norwegian Kroner (kr)"""
+NOK
+"""Nepalese Rupee (Rs)"""
+NPR
+"""New Zealand Dollar ($)"""
+NZD
+"""Omani Rial (﷼)"""
+OMR
+OUNCE
+"""Panamanian Balboa (B/.)"""
+PAB
+PECK_US_DRY
+"""Peruvian Nuevo Sol (S/.)"""
+PEN
+"""Papua New Guinean Kina (K)"""
+PGK
+"""Philippine Peso (Php)"""
+PHP
+PINT_FLUID
+PINT_UK
+PINT_US_DRY
+"""Pakistani Rupee (₨)"""
+PKR
+"""Polish Zloty (zł)"""
+PLN
+POUND
+"""Paraguayan guaraní (₲)"""
+PYG
+"""Qatari Rial (﷼)"""
+QAR
+QUART_FLUID
+QUART_UK
+QUART_US_DRY
+"""Romanian Leu (lei)"""
+RON
+"""Serbian Dinar (Дин.)"""
+RSD
+"""Russian Rouble (руб)"""
+RUB
+"""Rwandan franc (FRw)"""
+RWF
+"""Saudi Riyal (﷼)"""
+SAR
+"""Solomon Islands Dollar ($)"""
+SBD
+"""Seychellois Rupee (₨)"""
+SCR
+"""Sudanese Pound"""
+SDG
+"""Swedish Krona (kr)"""
+SEK
+"""Singapore Dollar"""
+SGD
+"""Saint Helenian Pound (£)"""
+SHP
+"""Sierra Leonean Leone"""
+SLL
+"""Somali Shilling (S)"""
+SOS
+"""Surinamese Dollar ($)"""
+SRD
+"""São Tomé and Príncipe Dobra (Db)"""
+STD
+"""Salvadoran Colón ($)"""
+SVC
+"""Syrian Pound"""
+SYP
+"""Swazi Lilangeni (L)"""
+SZL
+"""Thai Baht (฿)"""
+THB
+"""Tajikistani Somoni"""
+TJS
+"""Turkmenistani Manat"""
+TMT
+"""Tunisian Dinar"""
+TND
+TON
+"""Tongan Paʻanga (T$ )"""
+TOP
+"""Turkish Lira (TL)"""
+TRY
+"""Trinidad/Tobago Dollar (TT$)"""
+TTD
+"""Taiwan Dollar (NT$)"""
+TWD
+"""Tanzanian Shilling (TSh)"""
+TZS
+"""Ukraine Hryvnia (₴)"""
+UAH
+"""Ugandan shilling (USh)"""
+UGX
+"""US Dollar ($)"""
+USD
+"""Uruguayan Peso ($U)"""
+UYU
+"""Uzbekistani Som (лв)"""
+UZS
+"""Venezuelan Bolívar Fuerte"""
+VEF
+"""Vietnamese dong (₫)"""
+VND
+"""Vanuatu vatu (VT)"""
+VUV
+"""Samoan Tala"""
+WST
+"""Central African CFA franc (FCFA)"""
+XAF
+"""Silver (troy ounce)"""
+XAG
+"""Gold (troy ounce)"""
+XAU
+"""East Caribbean Dollar ($)"""
+XCD
+"""Special Drawing Rights"""
+XDR
+"""West African CFA franc (CFA)"""
+XOF
+"""CFP franc (F)"""
+XPF
+YARD
+"""Yemeni Rial (﷼)"""
+YER
+"""South African Rand (R)"""
+ZAR
+"""Zambian Kwacha (K)"""
+ZMK
+"""Zambian Kwacha (ZK)"""
+ZMW
+"""Zimbabwean Dollar"""
+ZWL
+}
+enum BillingOptionCode {
+DDP_AND_DDU
+SHIPPER_ONLY
+THIRD_PARTY
+UNAVAILABLE
+}
+type TransitTime {
+"""
+ISO-8601 timestamp of when the delivery will be delivered. Only the time portion will be used.
+"""
+guaranteedDelivery: DateTime
+"""The maximum number of transit days."""
+max: Int
+"""The minimum number of transit days."""
+min: Int
+"""
+Indicates what type of value the min and max fields represent. (default: days)
+"""
+type: TransitTypeCode
+}
+enum TransitTypeCode {
+BUSINESS_DAYS
+DAYS
+WEEKS
+}
+"""
+Specifies the components of the credential required to access a `Carrier`'s API.
+"""
+type CarrierCredential {
+"""When this CarrierCredential was created."""
+createdAt: DateTime!
+"""The user who created the CarrierCredential."""
+createdBy: ID!
+"""Specifies whether the field is visible to a merchant."""
+display: VisibilityCode!
+"""A unique identifier for the CarrierCredential."""
+id: ID!
+"""The name of the CarrierCredential field as denoted by the `Carrier`."""
+label: String!
+"""The sequence that this credential will appear to the user."""
+sequence: Int!
+"""The credential type that is being updated for a `Carrier`."""
+type: CarrierCredentialTypeCode!
+"""The regex syntax that is required for the CarrierCredential field."""
+validationPattern: String
+}
+enum VisibilityCode {
+HIDE
+OPTIONAL
+REQUIRED
+}
+enum CarrierCredentialTypeCode {
+ACCESS_LICENSE_NUMBER
+ACCOUNT_NUMBER
+API_KEY
+API_PASSWORD
+API_TOKEN
+CUSTOMER_ID
+METER_NUMBER
+PAYMENT_COUNTRY_CODE
+SENDER_LOCATION
+SHIPPER_NUMBER
+SITE_ID
+USER_ID
+}
+enum DeliveryType {
+CONSOLIDATED
+COURIER
+POSTAL
+}
+"""
+A `ShippingProfileRateChart` would apply to a specific shipping profile.
+The `ShippingProfileRateChart` would be used before any `ServiceLevelRateChart` as well as any external carrier API.
+"""
+type ShippingProfileRateChart {
+"""When this ShippingProfileRateChart was created."""
+createdAt: DateTime!
+"""The user who created the ShippingProfileRateChart."""
+createdBy: ID!
+"""The dimensional weight factor to be used for the supplied rates. """
+dimensionalWeightFactor: Decimal!
+"""The `shipFrom` `countryCode` that applies to filter by."""
+fromCountryCode: CountryCode
+"""A unique identifier for the ShippingProfileRateChart."""
+id: ID!
+"""The destination locations for the ShippingProfileRateChart."""
+locations: [ShippingRateLocation!]
+"""
+Specifies whether the ShippingProfileRateChart is in live or test mode.
+"""
+mode: Mode!
+"""
+The specific rate values that apply to the given ShippingProfileRateChart.
+"""
+rates: [ShippingRate!]!
+"""The `ShippingProfile` associated with the ShippingProfileRateChart."""
+shippingProfile: ShippingProfile!
+"""When this ShippingProfileRateChart was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the ShippingProfileRateChart."""
+updatedBy: ID!
+}
+"""
+A `ShippingRateLocation` is used to limit the destination that would apply to a `ShippingProfileRateChart`.
+"""
+type ShippingRateLocation {
+"""
+Which administrative area the shipper must be located in to trigger this configuration.
+"""
+administrativeAreaCode: String
+"""A single country code if one applies to this location."""
+countryCode: CountryCode
+"""A pre-defined area or carrier zone that applies to the rate."""
+serviceLevelArea: ServiceLevelArea
+}
+"""
+A `serviceLevelArea` object is a grouping of countries, regions, or zip codes that can be associated with a `serviceLevel`.
+Usage of this will only happen in conjunction with rate charts.
+"""
+type ServiceLevelArea {
+"""
+The search pattern of an administrative area or region code of the country.
+"""
+administrativeAreaCodePattern: String
+"""The search pattern of the country code."""
+countryCodePattern: String
+"""When the ServiceLevelArea was created."""
+createdAt: DateTime!
+"""The user who created the ServiceLevelArea."""
+createdBy: ID!
+"""A unique identifier for the ServiceLevelArea."""
+id: ID!
+"""Specifies whether the ServiceLevelArea is in live or test mode."""
+mode: Mode!
+"""The humanly-memorable display name for the ServiceLevelArea."""
+name: String!
+"""Regular expression of postal codes that apply to the area."""
+postalCodePattern: String
+"""The `ServiceLevel` that the area is being used for."""
+serviceLevel: ServiceLevel!
+"""When the ServiceLevelArea was updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the ServiceLevelArea."""
+updatedBy: ID!
+}
+"""A Shipping rate that is based on either weight our currency amount"""
+union ShippingRate = ShippingRateAmount | ShippingRateWeight
+"""
+A `ShippingRateAmount` defines the range in a specific currency unit that applies to a given rate amount
+"""
+type ShippingRateAmount {
+"""The subtotal amount used to find the applied rate."""
+amount: Decimal!
+"""How the amount is applied based on the units."""
+calculationType: ShippingRateCalculation!
+"""The currency this `shippingRate` price amount is in."""
+currencyCode: CurrencyCode!
+"""The inclusive maximum amount that applies to the given rate."""
+maxUnit: Decimal
+"""The exclusive minimum amount that applies to the given rate."""
+minUnit: Decimal
+"""The `currencyCode` that defines the min/max values."""
+unit: CurrencyCode!
+}
+"""Specify how the rate amount would be applied."""
+enum ShippingRateCalculation {
+"""The rate uses the amount as it was entered."""
+FIXED
+"""The rate multiplies the amount by the units."""
+PER_UNIT
+}
+"""
+A `ShippingRateWeight` defines the range in a specific weight unit that applies to a given rate amount
+"""
+type ShippingRateWeight {
+"""The subtotal amount used to find the applied rate."""
+amount: Decimal!
+"""How the amount is applied based on the units."""
+calculationType: ShippingRateCalculation!
+"""The currency this `shippingRate` price amount is in."""
+currencyCode: CurrencyCode!
+"""The inclusive maximum weight that applies to the given rate."""
+maxUnit: Decimal
+"""The exclusive minimum weight that applies to the given rate."""
+minUnit: Decimal
+"""The type of weight associated with the `ShippingRate`."""
+unit: WeightUnitCode!
+}
+enum LandedCostTariffRate {
+"""
+Exact tariff rate for provided HS code will be used. If not possible, an error will be returned
+"""
+EXACT
+"""Maximum tariff rate for provided HS code will be used"""
+MAXIMUM
+"""Median tariff rate for provided HS code will be used"""
+MEDIAN
+"""Lowest tariff rate for provided HS code will be used"""
+MINIMUM
+"""
+Zonos will attempt to calculate best tariff rate for provided HS code (recomended)
+"""
+ZONOS_PREFERRED
+}
+"""Represents a tax amount on a `LandedCost` quote"""
+type Tax {
+"""
+`Tax` amount in the currency specified by the `Root` object which owns this `LandedCost`
+"""
+amount: Decimal!
+"""Currency the `Tax` amount is in. @deprecated use currencyCode instead."""
+currency: CurrencyCode!
+"""Currency the `Tax` amount is in."""
+currencyCode: CurrencyCode!
+"""Human-readable description of this `Tax`."""
+description: String
+"""Exchange rate information for foreign currency `Tax` amounts"""
+exchangeRate: ExchangeRate
+"""Human readable formula indicating how this tax was calculated"""
+formula: String!
+"""`Item` that this tax amount applies to"""
+item: Item
+"""Additional note for this `Tax`."""
+note: String
+"""`Party` responsible for receiving payment on this tax amount"""
+payee: Party
+"""`Party` responsible for rendering payment on this tax amount"""
+payor: Party
+"""Type of `Tax`."""
+type: LandedCostFeeType!
+}
+type TaxId {
+allowLowValueOrders: Boolean
+countryCode: CountryCode!
+createdAt: DateTime
+createdBy: DateTime
+effectiveAt: DateTime
+expiresAt: DateTime
+id: ID
+method: TaxMethodType!
+mode: Mode
+organization: ID
+sendEmails: Boolean
+taxIdNumber: String!
+type: TaxIdType!
+updatedAt: DateTime
+updatedBy: ID
+}
+enum TaxMethodType {
+CONSIGNMENT
+DEFAULT
+}
+enum TaxIdType {
+"""Brazil CNPJ/CPF Federal Tax"""
+CNP
+"""Deferment account duties only"""
+DAN
+"""Deferment account duties, taxes, and fees only"""
+DTF
+"""Data Universal Numbering System"""
+DUN
+"""Employer Identification Number"""
+EIN
+"""Economic Operator registration ID"""
+EORI
+"""Federal Tax ID"""
+FED
+"""Free Trade Zone ID"""
+FTZ
+"""VAT registration"""
+GST
+"""GB VAT (foreign) registration"""
+HMRC
+"""Import One Stop Shop"""
+IOSS
+"""Oversees Registered Supplier"""
+LVG
+"""AUSid GST registration"""
+OSR
+"""Social Security Number"""
+SSN
+"""#State Tax ID"""
+STA
+"""Deferment account tax only"""
+TAN
+"""VAT on E-Commerce"""
+VOEC
+}
+type Order {
+"""The order number from the organizations system."""
+accountOrderNumber: String
+"""The subtotal amounts that make up the `order`"""
+amountSubtotals: AmountSubtotals!
+"""The cartons that are included in the `order`."""
+cartons: [Carton!]
+"""When this `Order` was created"""
+createdAt: DateTime!
+"""The user who created the `Order`"""
+createdBy: ID!
+"""The currency of the amount subtotals for the `order`."""
+currencyCode: CurrencyCode!
+"""Order ID, prefixed with `order_`"""
+id: ID!
+"""The items that are included in the `order`."""
+items: [Item!]
+"""The landedCost calculations that are included in the `order`."""
+landedCosts: [LandedCost!]
+"""Indicates whether this Order was created in live or test mode"""
+mode: Mode!
+"""The `organization` associated with the `order`"""
+organization: ID!
+"""The reference information that is included in the `order`."""
+references: [OrderReference!]
+"""List of remittances"""
+remittance: [Remittance]
+root: Root
+"""The shipmentRatings that are included in the `order`."""
+shipmentRatings: [ShipmentRating!]
+"""The main tracking number for the `order`."""
+trackingNumbers: [String]
+"""When this `Order` was most recently updated."""
+updatedAt: DateTime!
+"""The user who most recently updated the `order`."""
+updatedBy: ID!
+}
+"""The breakdown of the amounts that are included in the `order`."""
+type AmountSubtotals {
+duties: Decimal!
+fees: Decimal!
+items: Decimal!
+shipping: Decimal!
+taxes: Decimal!
+variance: Decimal!
+}
+"""Reference information provided by Zonos about the order."""
+type OrderReference {
+key: String
+value: String
+}
+type Remittance {
+amount: Decimal!
+description: String!
+note: String!
+}
